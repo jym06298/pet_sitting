@@ -1,6 +1,7 @@
 from optparse import Values
 import pymysql
 import random
+import datetime
 
 # insert_query(table_name, **kwargs)
 # DESCRIPTION- creates a valid insert query for mysql
@@ -44,6 +45,35 @@ def insert_query(table_name, **kwargs):
 def generate_full_name(first_names, last_names):
     return first_names[random.randrange(len(first_names))] + ' ' + last_names[random.randrange(len(last_names))]
 
+def generate_random_time(start_time, end_time):
+    # example: 1970-01-01 03:14:01
+    now = datetime.datetime.now()
+
+    
+    if start_time.month != end_time.month:
+        random_time = datetime.datetime(now.year, random.randrange(start_time.month, end_time.month), random.randrange(start_time.day, end_time.day))
+    else:
+        random_time = datetime.datetime(now.year, start_time.month, random.randrange(start_time.day, end_time.day))
+
+    random_date_str = random_time.strftime("%Y-%m-%d ")
+
+    random_hour = random.randrange(1,24)
+    random_minute= random.randrange(0,60,15)
+
+    random_end_hour = random.randrange(random_hour, 24)
+    if random_end_hour == random_hour:
+        random_end_minute = random.randrange(random_minute,60,15)
+    else:
+        random_end_minute = random.randrange(0, 60, 15)
+    
+
+    random_start_str = "{:0>2d}:{:0>2d}:{:0>2d}".format(random_hour, random_minute, 0)
+    random_end_str = "{:0>2d}:{:0>2d}:{:0>2d}".format(random_end_hour, random_end_minute, 0)
+
+    return [random_date_str + random_start_str, random_date_str + random_end_str]
+
+
+    
 
 user_name = 'root'
 passw = ""
@@ -54,7 +84,7 @@ cursor = db.cursor()
 first_names = []
 last_names = []
 pet_names =  []
-animals = []
+animals = ["Dog", "cat", "fish", "reptile", "rodent"]
 num_employees = 30
 
 with open('names/first_name.txt', 'r') as f:
@@ -79,6 +109,11 @@ for animal in animals:
      cursor.execute(insert_query('animals', animal_name = str(animal)))
      db.commit()
 
+start_date = datetime.datetime.now()
+end_date = datetime.datetime(start_date.year, 4, 30)
+
+l = generate_random_time(start_date, end_date)
+
 
 #employeeID	employee_name	rating	charging_rate	phone	email	description	zipcode	
 #inserting into employee
@@ -99,7 +134,11 @@ for i in range(num_employees):
         cursor.execute(insert_query('employee_willing_animals', employeeID = i + 1,animalID = random.randrange(1, len(animals) + 1)))
         db.commit()
 
+# Dog, cat, fish, reptile, rodent
 
-    
+for i in range(num_employees):
+    for j in range(random.randrange(1,7)):
+        cursor.execute(insert_query('', employeeID = i + 1,animalID = random.randrange(1, len(animals) + 1)))
+        db.commit()
 
 
