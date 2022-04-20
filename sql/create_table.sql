@@ -1,38 +1,41 @@
 CREATE TABLE employee (
-    employeeID varchar(4) PRIMARY KEY NOT NULL,
+    employeeID int(4) NOT NULL AUTO_INCREMENT,
     employee_name varchar(24),
-    eating float(5,2),
-    eharging_rate float(8,2),
+    rating float(5,2),
+    charging_rate float(8,2),
     phone varchar(15),
-    email varchar(28),
-    availabilityID varchar(4),
+    email varchar(100),
+--    availabilityID int(4),
     description TEXT(1000),
-    zipcode char(5)
-    
+    zipcode char(5),
+    PRIMARY KEY(employeeID)
 );
 
 CREATE TABLE employee_availability (
-    availabilityID varchar(4) NOT NULL PRIMARY KEY,
-    employeeID varchar(4),
-    FOREIGN KEY (employeeID) REFERENCES employee(employeeID)
+    availabilityID int(4) NOT NULL AUTO_INCREMENT,
+    employeeID int(4),
+    start_time datetime,
+    end_time datetime,
+    FOREIGN KEY (employeeID) REFERENCES employee(employeeID),
+    PRIMARY KEY (availabilityID)
 );
 
-CREATE TABLE availability (
-    availabilityID varchar(4) NOT NULL,
-    start_time datetime,
-    end_time datetime
-);
+-- CREATE TABLE availability (
+--    availabilityID int(4) NOT NULL,
+--    start_time datetime,
+--    end_time datetime
+--);
 
 CREATE TABLE animals (
-    animalID varchar(4) PRIMARY KEY NOT NULL,
+    animalID int(4) NOT NULL AUTO_INCREMENT,
     animal_name varchar(28),
-    
+    PRIMARY KEY (animalID)
 );
 
 CREATE TABLE employee_willing_animals (
-    employeeID varchar(4) NOT NULL,
-    animalID varchar(4) NOT NULL,
-    FOREIGN KEY (employeeID) REFERENCES employee(employeeID)
+    employeeID int(4) NOT NULL,
+    animalID int(4) NOT NULL,
+    FOREIGN KEY (employeeID) REFERENCES employee(employeeID),
     FOREIGN KEY (animalID) REFERENCES animals(animalID)
 );
 
