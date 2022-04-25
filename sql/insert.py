@@ -99,9 +99,9 @@ with open('names/pet_name.txt', 'r') as f:
     for line in f.readlines():
         pet_names.append(line.strip())
     
-with open('names/animals.txt', 'r') as f:
-    for line in f.readlines():
-        animals.append(line.strip())
+#with open('names/animals.txt', 'r') as f:
+#    for line in f.readlines():
+#        animals.append(line.strip())
 
 
 #insert into animals 
@@ -125,8 +125,8 @@ for i in range(num_employees):
     email = "{}{}@gmail.com".format(full_name.replace(' ', ''), random.randrange(100))
     description = ""
     zip = random.randrange(30002,30098)
-    password = "pass"
-    cursor.execute( insert_query('employee', employee_name = full_name, rating = rating, charging_rate= charging_rate, phone = phone, email = email, description = description, zipcode = zip) )
+    passw = "pass"
+    cursor.execute( insert_query('employee', employee_name = full_name, rating = rating, charging_rate= charging_rate, phone = phone, email = email, description = description, zipcode = zip, password = passw) )
     db.commit()
 
 #inserting into employee_willing_animals
@@ -137,9 +137,9 @@ for i in range(num_employees):
 
 # Dog, cat, fish, reptile, rodent
 
-for i in range(num_employees):
-    for j in range(random.randrange(1,7)):
-        cursor.execute(insert_query('', employeeID = i + 1,animalID = random.randrange(1, len(animals) + 1)))
-        db.commit()
+#for i in range(num_employees):
+##    for j in range(random.randrange(1,7)):
+#       cursor.execute(insert_query('', employeeID = i + 1,animalID = random.randrange(1, len(animals) + 1)))
+#        db.commit()
 
 

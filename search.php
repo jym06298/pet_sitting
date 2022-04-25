@@ -9,11 +9,20 @@
     INNER JOIN animals A ON A.animalID = EW.animalID
     WHERE E.employeeID = 1 AND animal_name = 'Barracuda';";
 
-    db->prepare($animal_names_query);
+    $test_query = "SELECT employee_name FROM employee;";
+    //db->prepare($animal_names_query);
     
-    db->execute();
-    $results = db->fetch();
-    echo $results;
+    //db->execute();
+    try {
+        $test_stmt = $db->query($test_query);
+        $employees = $test_stmt->fetch();
+    
+        echo $employees[0];
+
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+
 
 ?>
 
