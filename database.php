@@ -1,7 +1,7 @@
 <?php
     $dsn = 'mysql:host=localhost;dbname=pet_sitting';
     $username = 'root';
-    $password = 'asjdf';
+    $password = '';
 
     // Error handling
     try {

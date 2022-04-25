@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    require('database.php');
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,6 +47,7 @@
             <option value="Rodent">Rodent</option>
         </select><br><br>
         <input type="submit" value="Submit" onClick="clickedSubmit()">
+
     </form><br><br>
 
     <div id="results"></div>
