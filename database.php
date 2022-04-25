@@ -1,5 +1,5 @@
 <?php
-    $dsn = 'mysql:host=localhost;dbname=group5_e_commerce_shop';
+    $dsn = 'mysql:host=localhost;dbname=pet_sitting';
     $username = 'root';
     $password = '';
 
@@ -11,5 +11,6 @@
         echo  '<p> Unable to connect to the database: '.$error;
         exit();
     }
+    
 
 ?>
