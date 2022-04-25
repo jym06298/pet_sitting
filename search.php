@@ -3,6 +3,18 @@
     require('database.php');
 
 
+    $animal_names_query = "SELECT E.employee_name, A.animal_name
+    FROM employee_willing_animals EW 
+    INNER JOIN employee E ON E.employeeID = EW.employeeID
+    INNER JOIN animals A ON A.animalID = EW.animalID
+    WHERE E.employeeID = 1 AND animal_name = 'Barracuda';";
+
+    db->prepare($animal_names_query);
+    
+    db->execute();
+    $results = db->fetch();
+    echo $results;
+
 ?>
 
 <!DOCTYPE html>

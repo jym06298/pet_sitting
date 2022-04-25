@@ -125,6 +125,7 @@ for i in range(num_employees):
     email = "{}{}@gmail.com".format(full_name.replace(' ', ''), random.randrange(100))
     description = ""
     zip = random.randrange(30002,30098)
+    password = "pass"
     cursor.execute( insert_query('employee', employee_name = full_name, rating = rating, charging_rate= charging_rate, phone = phone, email = email, description = description, zipcode = zip) )
     db.commit()
 

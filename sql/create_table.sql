@@ -1,3 +1,11 @@
+DROP TABLE IF EXISTS employee_willing_animals;
+DROP TABLE IF EXISTS employee_availability;
+DROP TABLE IF EXISTS animals;
+DROP TABLE IF EXISTS employee;
+DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS pet_accounts;
+DROP TABLE IF EXISTS orders;
+
 CREATE TABLE employee (
     employeeID int(4) NOT NULL AUTO_INCREMENT,
     employee_name varchar(28),
@@ -8,6 +16,7 @@ CREATE TABLE employee (
 --    availabilityID int(4),
     description TEXT(1000),
     zipcode char(5),
+    password varchar(28) NOT NULL,
     PRIMARY KEY(employeeID)
 );
 
@@ -40,16 +49,17 @@ CREATE TABLE customers (
     email varchar(100),
     zipcode char(5),
     username varchar(28),
-    password varchar(255)
-)
+    password varchar(255),
+    PRIMARY KEY (customerID)
+);
 CREATE TABLE pet_accounts (
     petID int(4) NOT NULL PRIMARY KEY,
     pet_name varchar(28),
     customerID int(4) NOT NULL,
     animalID int(4) NOT NULL,
-    FOREIGN KEY (animalID) REFERENCES animals(animalID)
+    FOREIGN KEY (animalID) REFERENCES animals(animalID),
     FOREIGN KEY (customerID) REFERENCES customers(customerID)
-)
+);
 CREATE TABLE orders (
     orderID int(4) NOT NULL PRIMARY KEY,
     customerID int(4) NOT NULL,
@@ -58,6 +68,6 @@ CREATE TABLE orders (
     end_time datetime NOT NULL,
     cost float(8,2) NOT NULL,
     petID int(4) NOT NULL
-)
+);
 
 
