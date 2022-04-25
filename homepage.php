@@ -1,3 +1,17 @@
+<?php
+
+// The beginning of the session
+  session_start();
+
+  // Making sure the user is logged in
+  if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)) 
+  {
+    header("Location: login.php");
+  }
+
+  require('database.php');
+?>
+
 <html>
 <head></head>
 <body style="background-color:#EEC894;">
