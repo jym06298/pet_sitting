@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
+	<link rel="stylesheet" href="pet_sitting.css">
+    <title>Animal Profile Form</title>
 </head>
+
 <body>
     <h2>Animal Profile Form</h2>
     <form action="/action_page.php">
-        <label for="name">Name:</label><br>
+        <label for="name">Name: </label>
         <input type="text" id="name" name="name" placeholder="Bobby"><br>
-        <label for="animal">Choose animal type:</label>
+        <label for="animal">Choose animal type: </label>
         <select id="animal" name="animal">
             <option value="dog">Dog</option>
             <option value="cat">Cat</option>
@@ -26,13 +28,11 @@
             <option value="mid">3-7</option>
             <option value="old">7+</option>
         </select><br>
-
         <label for="begin">Begin Date:</label>
         <input type="date" id="begin" name="begin">
         <label for="end">End Date:</label>
-        <input type="date" id="end" name="end">
-
-        <label for="notes">Any additional notes:</label>
+        <input type="date" id="end" name="end"><br>
+        <label for="notes">Any additional notes: </label><br>
         <textarea id="notes" name="notes" rows="4" cols="50">
         
         </textarea><br><br>
