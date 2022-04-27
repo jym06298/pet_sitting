@@ -73,7 +73,12 @@ def generate_random_time(start_time, end_time):
     return [random_date_str + random_start_str, random_date_str + random_end_str]
 
 
-    
+def incremental_list(start, end):
+    list = []
+    for i in range(start, end):
+        list.append(i)
+
+    return list
 
 user_name = 'root'
 passw = ""
@@ -129,11 +134,19 @@ for i in range(num_employees):
     cursor.execute( insert_query('employee', employee_name = full_name, rating = rating, charging_rate= charging_rate, phone = phone, email = email, description = description, zipcode = zip, password = passw) )
     db.commit()
 
+
+
 #inserting into employee_willing_animals
 for i in range(num_employees):
+    temp_list = incremental_list(1, len(animals) + 1)    
     for j in range(random.randrange(1,6)):
-        cursor.execute(insert_query('employee_willing_animals', employeeID = i + 1,animalID = random.randrange(1, len(animals) + 1)))
-        db.commit()
+#        animal_id = random.randrange(1, len(animals) + 1)
+        animal_id = random.choice(temp_list)
+        if animal_id not in temp_list:
+            print("inserting into table")
+            temp_list.remove(animal_id)
+            cursor.execute(insert_query('employee_willing_animals', employeeID = i + 1,animalID = animal_id))
+            db.commit()
 
 # Dog, cat, fish, reptile, rodent
 

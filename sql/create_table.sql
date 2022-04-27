@@ -1,11 +1,10 @@
 DROP TABLE IF EXISTS employee_willing_animals;
 DROP TABLE IF EXISTS employee_availability;
-DROP TABLE IF EXISTS animals;
-DROP TABLE IF EXISTS employee;
-DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS pet_accounts;
 DROP TABLE IF EXISTS orders;
-
+DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS animals;
+DROP TABLE IF EXISTS employee;
 CREATE TABLE employee (
     employeeID int(4) NOT NULL AUTO_INCREMENT,
     employee_name varchar(28),
