@@ -16,13 +16,13 @@
 <head></head>
 <body style="background-color:#EEC894;">
 
-
-<center><h1> WELCOME! </h1></center>
+<!-- example of how to inject php code into html code. $_SESSION['username'] was created in login.php-->
+<center><h1> WELCOME, <?php echo $_SESSION['username'] ?>!</h1></center>
 
 
 </div>
-<div class="topnav"> <a href="homepage.php">Home</a> <a href="employeeSignup.html">Employee Sign-Up</a> <a href="customerSignUp.html">Customer Sign-Up</a> <a style="float: right;"</a> <a
-href="Login.html">Login</a> <a style="float: right;"
+<div class="topnav"> <a href="homepage.php">Home</a> <a href="employeeSignup.php">Employee Sign-Up</a> <a href="customerSignUp.php">Customer Sign-Up</a> <a style="float: right;"</a> <a
+href="login.php">Login</a> <a style="float: right;"
                   
 
 
