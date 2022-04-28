@@ -16,8 +16,7 @@
 
     if (isset($_POST['submit'])) {
 
-        #employeeID	employee_name	rating	charging_rate	phone	email	description	zipcode	password	
-
+        #inserting into employee table
         $insert_employee_query = "INSERT INTO employee(employee_name, rating, charging_rate, phone, email, description, zipcode, password) VALUES (:_employee_name, NULL, NULL, :_phone, :_email, :_description, :_zipcode, :_passw) ";
 
         $space = " ";
@@ -41,16 +40,19 @@
             echo $e->getMessage();
         }
 
-        #Must insert into employee_willing_animal table too
-        #First query employeeID that matches the name of employee that just signed up
+        #inserting into employee_willing_animals table
         $employee_query = "SELECT employeeID from employee WHERE employee_name = :_emp_name AND email = :_email" ;
         $employee_statement = $db->prepare($employee_query);
         $employee_statement->bindValue(":_emp_name", $full_name);
         $employee_statement->bindValue(":_email", $_POST['email']);
 
-        $employee_statement->execute();
+        try {
+            $employee_statement->execute();
+        } catch(Exception $e) {
+            echo $e->getMessage();
+            header("sql_error.php");
+        }
         $employee = $employee_statement->fetch();
-
         //if successfully inserted into employee table and query works fine, then add to employee willing animals table
         if($employee_statement->rowCount() == 1) {
 
