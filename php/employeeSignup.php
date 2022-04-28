@@ -3,13 +3,17 @@
     session_start();
     require('database.php');
     #getting list of all animals
-    $animals_query = "SELECT animal_name from animals;";
+    $animals_query = "SELECT animal_name, animalID from animals;";
 
     $animals_statement = $db->prepare($animals_query);
     $animals_statement->execute();
-    $animals_array = $animals_statement->fetch();
+    $animals = array();
+    
+  
+    while( $row = $animals_statement->fetch() ) {
+        $animals[$row['animal_name']] = $row['animalID'];
+    }
 
-    echo $animals_statement->rowCount();
     if (isset($_POST['submit'])) {
 
         #employeeID	employee_name	rating	charging_rate	phone	email	description	zipcode	password	
@@ -18,10 +22,11 @@
 
         $space = " ";
         
-        echo $test;
+        $full_name = $_POST['fname'] .$space .$_POST['lname'];
+
         $insert_employee_statement = $db->prepare($insert_employee_query);
 
-        $insert_employee_statement->bindValue(':_employee_name', $_POST['fname'] .$space .$_POST['lname']);
+        $insert_employee_statement->bindValue(':_employee_name', $full_name);
         $insert_employee_statement->bindValue(':_phone', $_POST['number']);
         $insert_employee_statement->bindValue(':_email', $_POST['email']);
         $insert_employee_statement->bindValue(':_description', $_POST['notes']);
@@ -31,13 +36,46 @@
         try {
             $insert_employee_statement->execute();
             echo "successfully inserted.";
-            header("Location: login.php");
+
         } catch(Exception $e) {
             echo $e->getMessage();
         }
 
         #Must insert into employee_willing_animal table too
         #First query employeeID that matches the name of employee that just signed up
+        $employee_query = "SELECT employeeID from employee WHERE employee_name = :_emp_name AND email = :_email" ;
+        $employee_statement = $db->prepare($employee_query);
+        $employee_statement->bindValue(":_emp_name", $full_name);
+        $employee_statement->bindValue(":_email", $_POST['email']);
+
+        $employee_statement->execute();
+        $employee = $employee_statement->fetch();
+
+        //if successfully inserted into employee table and query works fine, then add to employee willing animals table
+        if($employee_statement->rowCount() == 1) {
+
+            
+            foreach($animals as $animal => $id) {
+
+                #if the checkbox has been checked
+                if ($_POST[$animal]) {
+                    #insert into employee_willing_animals
+                    $insert_empWilling_query = "INSERT INTO employee_willing_animals VALUES (:_empID, :_animalID);";
+                    $insert_empWilling_statement = $db->prepare($insert_empWilling_query);
+                    $insert_empWilling_statement->bindValue(":_empID", $employee['employeeID']);
+                    $insert_empWilling_statement->bindValue(":_animalID", $id);
+                    $insert_empWilling_statement->execute();
+                }
+           } //foreach
+
+
+
+        } else {
+            echo "Something went wrong querying your information";
+            #go to error page?
+        } //if else
+
+        header("Location: successSignup.php");
     } //if
 ?>
 
@@ -66,16 +104,12 @@
         <input type="text" id="zipcode" name="zipcode"><br><br>
 
         <label for="animal">Which animals are you willing to take care of:</label><br>
-        <input type="checkbox" id="dog" name="dog" value="dog">
-        <label for="dog">Dog</label><br>
-        <input type="checkbox" id="cat" name="cat" value="cat">
-        <label for="cat">Cat</label><br>
-        <input type="checkbox" id="fish" name="fish" value="fish">
-        <label for="fish">Fish</label><br>
-        <input type="checkbox" id="reptile" name="reptile" value="reptile">
-        <label for="reptile">Reptile</label><br>
-        <input type="checkbox" id="rodent" name="rodent" value="rodent">
-        <label for="rodent">Rodent</label><br><br>
+
+        <?php foreach($animals as $animal => $id): ?>
+            <input type = "checkbox" name = <?php echo $animal; ?> value = <?php echo $animal; ?>>
+            <label for=<?php echo $animal; ?>> <?php echo $animal; ?> </label><br>
+           
+        <?php endforeach; ?>
 
         <label for="notes">Description:</label><br>
         <textarea id="notes" name="notes" rows="4" cols="50">
