@@ -47,7 +47,6 @@ CREATE TABLE customers (
     phone varchar(15),
     email varchar(100),
     zipcode char(5),
-    username varchar(28),
     password varchar(255),
     PRIMARY KEY (customerID)
 );

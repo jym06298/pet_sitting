@@ -20,11 +20,10 @@
 <center><h1> WELCOME, <?php echo $_SESSION['username'] ?>!</h1></center>
 
 
-</div>
-<div class="topnav"> <a href="homepage.php">Home</a> <a href="employeeSignup.php">Employee Sign-Up</a> <a href="customerSignUp.php">Customer Sign-Up</a> <a style="float: right;"</a> <a
-href="login.php">Login</a> <a style="float: right;"
+<div class="topnav"> <a href="homepage.php">Home</a> <a href="employeeSignup.php">Employee Sign-Up</a> <a href="customerSignUp.php">Customer Sign-Up</a> <a style="float: right;"> <a
+href="login.php">Login</a> <a style="float: right;">
                   
-
+<br>
 
 <div class="row">
 <div class="leftcolumn" style="font-size: large; line-height: 2.0; text-align: center;">Pet-sitting at your convenience! Just post and certified pet sitters in your area will come at your service.</div>

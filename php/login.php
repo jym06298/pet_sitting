@@ -11,15 +11,15 @@
         //Create query string that you want to run
         // Notice that instead of strict values (ex: employee.email="example@gmail.com"and password="1234") for our conditions,
         // we instead replace it with any string starting with the character ':',
-        // Then we just use the bindValue() command to bind the values users have inputted in the post method.
-        $employee_login_query = "SELECT * FROM employee WHERE employee.email=:_email AND password=:_passw;";
+        // Then we just use the bindValue() command to bind the values users have inputted in the form(since we used method = post it will be in $_POST[name]).
+        $employee_login_query = "SELECT * FROM employee WHERE email=:_email AND password=:_passw;";
         $customer_login_query = "SELECT * FROM customers WHERE email=:_email AND password=:_passw;";
 
         //You must prepare the query using the prepare command
         $employee_login_statement = $db->prepare($employee_login_query);
         $customer_login_statement = $db->prepare($customer_login_query);
     
-        //Binding values as mentioned in comment line: 12
+        //Binding values as mentioned in comment line: 14
         $employee_login_statement->bindValue(':_email', $_POST['email']);
         $employee_login_statement->bindValue(':_passw', $_POST['password']);
         $customer_login_statement->bindValue(':_email', $_POST['email']);
@@ -86,6 +86,12 @@ id="email" name="email" type="text" /><br /><br /><label
 for="password">Password:</label><br /><input id="password" name="password" 
 type="text" /><br /><br /><input type="submit" name = "submit" value="Submit" />
 </form> 
+
+<div>
+    <a href='customerSignup.php'>customer signup</a>
+    <a href="employeeSignup.php">employee signup</a>
+</div>
+
 
 </body>
 </html>
