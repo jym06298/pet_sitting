@@ -20,8 +20,14 @@
 <center><h1> WELCOME, <?php echo $_SESSION['username'] ?>!</h1></center>
 
 
-<div class="topnav"> <a href="homepage.php">Home</a> <a href="employeeSignup.php">Employee Sign-Up</a> <a href="customerSignUp.php">Customer Sign-Up</a> <a style="float: right;"> <a
-href="login.php">Login</a> <a style="float: right;">
+<div class="topnav">
+  <a href="homepage.php">Home</a>
+  <a href="employeeSignup.php">Employee Sign-Up</a>
+  <a href="customerSignUp.php">Customer Sign-Up</a>
+  <a style="float: right;"> 
+  <a href="login.php">Login</a> 
+  <a href="logout.php">Logout</a>
+  <a style="float: right;">
                   
 <br>
 

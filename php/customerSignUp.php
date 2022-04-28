@@ -9,17 +9,16 @@
 
         $space = " ";
         
-        echo $test;
-        $insert_customer_statement = $db->prepare($insert_customer_query);
+        $insert_employee_statement = $db->prepare($insert_customer_query);
 
-        $insert_customer_statement->bindValue(':_customer_name', $_POST['fname'] .$space .$_POST['lname']);
-        $insert_customer_statement->bindValue(':_phone', $_POST['number']);
-        $insert_customer_statement->bindValue(':_email', $_POST['email']);
-        $insert_customer_statement->bindValue(':_zipcode', $_POST['zipcode']);
-        $insert_customer_statement->bindValue(':_passw', $_POST['password']);
+        $insert_employee_statement->bindValue(':_customer_name', $_POST['fname'] .$space .$_POST['lname']);
+        $insert_employee_statement->bindValue(':_phone', $_POST['number']);
+        $insert_employee_statement->bindValue(':_email', $_POST['email']);
+        $insert_employee_statement->bindValue(':_zipcode', $_POST['zipcode']);
+        $insert_employee_statement->bindValue(':_passw', $_POST['password']);
 
         try {
-            $insert_customer_statement->execute();
+            $insert_employee_statement->execute();
             echo "successfully inserted.";
             header("Location: login.php");
         } catch(Exception $e) {

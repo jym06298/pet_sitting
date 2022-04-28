@@ -53,7 +53,7 @@
             //Creating a isEmployee session. We will use this session value to see whether the user is an employee or customer
             $_SESSION['isEmployee'] = false;
 
-            $_SESSION['username'] = $employee_result['customer_name'];
+            $_SESSION['username'] = $customer_result['customer_name'];
             //Redirecting to homepage
             header("Location: homepage.php");
         } else {
@@ -79,7 +79,15 @@
 
 
 <body>
-    <h2>Login Form</h2>
+<h2>Login Form</h2>
+<div class="topnav">
+        <a href='homepage.php'>Home</a>
+        <a href='employeeSignup.html'>Employee Sign-Up</a>
+        <a href='customerSignUp.html'>customer Sign-Up</a>
+        <a href='sign_out.php' style="float:right">Sign Out</a>
+        <a href='' style="float:right">orders</a>
+</div>
+    
 <form method = "post" action="#">
     <label for="email">Email:</label> <br /><input 
 id="email" name="email" type="text" /><br /><br /><label 
