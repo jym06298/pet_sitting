@@ -40,6 +40,7 @@
         #First query employeeID that matches the name of employee that just signed up
     } //if
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
