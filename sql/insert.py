@@ -89,7 +89,7 @@ cursor = db.cursor()
 first_names = []
 last_names = []
 pet_names =  []
-animals = ["Dog", "cat", "fish", "reptile", "rodent"]
+animals = ["dog", "cat", "fish", "reptile", "rodent"]
 num_employees = 30
 
 with open('names/first_name.txt', 'r') as f:

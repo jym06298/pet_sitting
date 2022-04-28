@@ -82,8 +82,8 @@
 <h2>Login Form</h2>
 <div class="topnav">
         <a href='homepage.php'>Home</a>
-        <a href='employeeSignup.html'>Employee Sign-Up</a>
-        <a href='customerSignUp.html'>customer Sign-Up</a>
+        <a href='employeeSignup.php'>Employee Sign-Up</a>
+        <a href='customerSignUp.php'>customer Sign-Up</a>
         <a href='sign_out.php' style="float:right">Sign Out</a>
         <a href='' style="float:right">orders</a>
 </div>
