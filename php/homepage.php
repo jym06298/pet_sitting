@@ -21,13 +21,13 @@
 	<center>
 		<h1> WELCOME, <?php echo $_SESSION['username'] ?>!</h1>
 	</center>
-	<div class="topnav">
-		<a href="homepage.php">Home</a>
-		<a href="employeeSignup.php">Employee Sign-Up</a>
-		<a href="customerSignUp.php">Customer Sign-Up</a>
-		<a href="login.php">Login</a> 
-		<a href="logout.php">Logout</a>
-	</div><br>
+	<ul class="topnav">
+		<li><a href="homepage.php">Home</a></li>
+		<li><a href="employeeSignup.php">Employee Sign-Up</a></li>
+		<li><a href="customerSignUp.php">Customer Sign-Up</a></li>
+		<li><a href="login.php">Login</a></li>
+		<li><a href="logout.php">Logout</a></li>
+	</ul><br>
 
 <div class="row">
 <div class="leftcolumn" style="font-size: large; line-height: 2.0; text-align: center;">Pet-sitting at your convenience! Just post and certified pet sitters in your area will come at your service.</div>

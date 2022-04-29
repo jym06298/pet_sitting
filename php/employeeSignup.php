@@ -92,6 +92,12 @@
 </head>
 <body>
     <h2>Employee Profile</h2>
+	<div class="topnav">
+        <a href='homepage.php'>Home</a>
+        <a href='employeeSignup.html'>Employee Sign-Up</a>
+        <a href='customerSignUp.html'>Customer Sign-Up</a>
+        <a href='sign_out.php' style="float:right">Sign Out</a>
+    </div>
     <form action="#" method = "post">
         <label for="fname">First name:</label>
         <input type="text" id="fname" name="fname" placeholder="John"><br>
