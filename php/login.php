@@ -44,8 +44,10 @@
             //the fetch result, $employee_result makes it much easier to access the values. you can use $employee_result['employee_name'] instead of
             //$employee_result[0][1]
             $_SESSION['username'] = $employee_result['employee_name'];
+            $_SESSION['userID'] = $employee_result['employeeID'];
             //Redirecting to homepage
-            header("Location: homepage.php");
+#            header("Location: homepage.php");
+            echo $employee_result['employeeID'];
         } else if ($customer_login_statement->rowCount() == 1 ) {
 
             //Creating a 'loggedin' session. (Sessions are like cookies(saves information) but are on server side so they are more secure)
@@ -54,8 +56,9 @@
             $_SESSION['isEmployee'] = false;
 
             $_SESSION['username'] = $customer_result['customer_name'];
+            $_SESSION['userID'] = $customer_result['customerID'];
             //Redirecting to homepage
-            header("Location: homepage.php");
+#            header("Location: homepage.php");
         } else {
             //For now I am just echoing (printing out) that something went wrong. We might want to create and redirect to a login_error.php page for styling and all that
             echo "Something went wrong with your login. Please try again";
@@ -73,6 +76,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link ref="stylesheet" href="style.css">
     <title>Form</title>
 </head>
 
@@ -82,12 +86,14 @@
 <h2>Login Form</h2>
 <div class="topnav">
         <a href='homepage.php'>Home</a>
+        <a href="employeeProfile.php">Profile</a>
         <a href='employeeSignup.php'>Employee Sign-Up</a>
         <a href='customerSignUp.php'>customer Sign-Up</a>
-        <a href='sign_out.php' style="float:right">Sign Out</a>
+        <a href='logout.php' style="float:right">Sign Out</a>
         <a href='' style="float:right">orders</a>
 </div>
-    
+
+<div class="center">
 <form method = "post" action="#">
     <label for="email">Email:</label> <br /><input 
 id="email" name="email" type="text" /><br /><br /><label 
@@ -99,7 +105,7 @@ type="text" /><br /><br /><input type="submit" name = "submit" value="Submit" />
     <a href='customerSignup.php'>customer signup</a>
     <a href="employeeSignup.php">employee signup</a>
 </div>
-
+</div>
 
 </body>
 </html>

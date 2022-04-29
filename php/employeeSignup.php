@@ -3,16 +3,7 @@
     session_start();
     require('database.php');
     #getting list of all animals
-    $animals_query = "SELECT animal_name, animalID from animals;";
-
-    $animals_statement = $db->prepare($animals_query);
-    $animals_statement->execute();
-    $animals = array();
-    
-  
-    while( $row = $animals_statement->fetch() ) {
-        $animals[$row['animal_name']] = $row['animalID'];
-    }
+    require('queryAnimals.php');
 
     if (isset($_POST['submit'])) {
 
@@ -25,6 +16,7 @@
 
         $insert_employee_statement = $db->prepare($insert_employee_query);
 
+        #binding values to prepared query statement
         $insert_employee_statement->bindValue(':_employee_name', $full_name);
         $insert_employee_statement->bindValue(':_phone', $_POST['number']);
         $insert_employee_statement->bindValue(':_email', $_POST['email']);
@@ -32,6 +24,7 @@
         $insert_employee_statement->bindValue(':_zipcode', $_POST['zipcode']);
         $insert_employee_statement->bindValue(':_passw', $_POST['password']);
 
+        #executing insertion into employee table
         try {
             $insert_employee_statement->execute();
             echo "successfully inserted.";
@@ -87,6 +80,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link ref="stylesheet" href="../css/style.css">
     <title>Form</title>
 </head>
 <body>

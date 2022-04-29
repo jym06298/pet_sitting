@@ -11,6 +11,7 @@
 
     <div class="topnav">
         <a href='homepage.php'>Home</a>
+        <a href="employeeProfile.php">Profile</a>
         <a href='employeeSignup.html'>Employee Sign-Up</a>
         <a href='customerSignUp.html'>customer Sign-Up</a>
         <a href='sign_out.php' style="float:right">Sign Out</a>
