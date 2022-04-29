@@ -40,28 +40,31 @@
 <body>
     <h2>Customer Profile</h2>
 	<div class="topnav">
-        <a href='homepage.php'>Home</a>
-        <a href='employeeSignup.html'>Employee Sign-Up</a>
-        <a href='customerSignUp.html'>Customer Sign-Up</a>
-        <a href='sign_out.php' style="float:right">Sign Out</a>
+        <ul>
+			<li><a href='homepage.php'>Home</a></li>
+			<li><a href='employeeSignup.php'>Employee Sign-Up</a></li>
+			<li><a class="active" href='customerSignUp.php'>Customer Sign-Up</a></li>
+			<li><a href="login.php">Login</a></li>
+			<li><a href="logout.php">Logout</a></li>
+		</ul>
     </div>
     <form action="#" method = "post">
-        <label for="fname">First name:</label><br>
+        <label for="fname">First name:</label>
         <input type="text" id="fname" name="fname" placeholder="John"><br>
-        <label for="lname">Last name:</label><br>
+        <label for="lname">Last name:</label>
         <input type="text" id="lname" name="lname" placeholder="Doe"><br>
-        <label for="email">Email:</label><br>
+        <label for="email">Email:</label>
         <input type="email" id="email" name="email" placeholder="email@gmail.com"><br>
-        <label for="number">Phone number:</label><br>
+        <label for="number">Phone number:</label>
         <input type="tel" id="number" name="number" placeholder="123-456-7890"><br>
 
         <!--<label for="username">Username:</label><br>
         <input type="text" id="username" name="username"><br>-->
-        <label for="password">Password:</label><br>
+        <label for="password">Password:</label>
         <input type="text" id="password" name="password"><br>
-        <label for="zipcode">Zipcode:</label><br>
-        <input type="text" id="zipcode" name="zipcode"><br><br>
-        <input type="submit" name = "submit" value="Submit">
+        <label for="zipcode">Zipcode:</label>
+        <input type="text" id="zipcode" name="zipcode"><br>
+        <input class="submit" type="submit" name = "submit" value="Submit">
     </form> 
 
    

@@ -1,5 +1,4 @@
 <?php
-
     session_start();
     require('database.php');
 	
@@ -88,16 +87,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="../css/style.css">
-    <title>Employee Signup</title>
+    <title>Employee Sign-Up</title>
 </head>
 <body>
-    <h2>Employee Profile</h2>
+    <h2>Employee Sign-Up</h2>
 	<div class="topnav">
-        <a href='homepage.php'>Home</a>
-        <a href='employeeSignup.html'>Employee Sign-Up</a>
-        <a href='customerSignUp.html'>Customer Sign-Up</a>
-        <a href='sign_out.php' style="float:right">Sign Out</a>
-    </div>
+		<ul>
+			<li><a href="homepage.php">Home</a></li>
+			<li><a class="active" href="employeeSignup.php">Employee Sign-Up</a></li>
+			<li><a href="customerSignUp.php">Customer Sign-Up</a></li>
+			<li><a href="login.php">Login</a></li>
+			<li><a href="logout.php">Logout</a></li>
+		</ul>
+	</div>
     <form action="#" method = "post">
         <label for="fname">First name:</label>
         <input type="text" id="fname" name="fname" placeholder="John"><br>
@@ -121,7 +123,7 @@
 
         <label for="notes">Description:</label><br>
         <textarea id="notes" name="notes" rows="4" cols="50"></textarea><br>
-        <input type="submit" name = "submit" value="Submit">
+        <input class="submit" type="submit" name="submit" value="Submit">
     </form> 
 </body>
 </html>

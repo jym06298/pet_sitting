@@ -5,16 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="stylesheet" href="../css/style.css">
-    <title>Animal Signup</title>
+    <title>Animal Profile</title>
 </head>
 
 <body>
     <h2>Animal Profile</h2>
 	<div class="topnav">
-        <a href='homepage.php'>Home</a>
-        <a href='employeeSignup.html'>Employee Sign-Up</a>
-        <a href='customerSignUp.html'>Customer Sign-Up</a>
-        <a href='sign_out.php' style="float:right">Sign Out</a>
+		<ul>
+			<li><a href='homepage.php'>Home</a></li>
+			<li><a href='employeeSignup.php'>Employee Sign-Up</a></li>
+			<li><a href='customerSignUp.php'>Customer Sign-Up</a></li>
+			<li><a href="login.php">Login</a></li>
+			<li><a href="logout.php">Logout</a></li>
+		</ul>
     </div>
     <form action="/action_page.php">
         <label for="name">Your pet's name: </label>
@@ -40,7 +43,7 @@
         <input type="date" id="end" name="end"><br>
         <label for="notes">Any additional notes: </label><br>
         <textarea id="notes" name="notes" rows="4" cols="50"></textarea><br>
-        <input type="submit" value="Submit">
+        <input class="submit" type="submit" value="Submit">
     </form> 
 </body>
 </html>

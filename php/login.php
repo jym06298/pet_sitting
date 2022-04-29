@@ -83,22 +83,20 @@
 	<body>
 		<h2>Login</h2>
 		<div class="topnav">
-			<a href='homepage.php'>Home</a>
-			<a href='employeeSignup.php'>Employee Sign-Up</a>
-			<a href='customerSignUp.php'>Customer Sign-Up</a>
+			<ul>
+				<li><a href="homepage.php">Home</a></li>
+				<li><a href="employeeSignup.php">Employee Sign-Up</a></li>
+				<li><a href="customerSignUp.php">Customer Sign-Up</a></li>
+				<li><a class="active" href="login.php">Login</a></li>
+				<li><a href="logout.php">Logout</a></li>
+			</ul>
 		</div>
-    
 		<form method = "post" action="#">
 			<label for="email" placeholder="email@gmail.com">Email:</label>
 			<input id="email" name="email" type="text"><br>
 			<label for="password">Password:</label>
 			<input id="password" name="password" type="text"><br>
-			<input type="submit" name = "submit" value="Submit">
+			<input class="submit" type="submit" name = "submit" value="Submit">
 		</form> 
-
-		<div>
-			<a href='customerSignup.php'>Customer Sign-up</a>
-			<a href="employeeSignup.php">Employee Sign-up</a>
-		</div>
 	</body>
 </html>
