@@ -1,17 +1,27 @@
 <?php
-
     session_start();
     require('database.php');
     #getting list of all animals
     require('queryAnimals.php');
+	
+    //Getting list of all animals
+    $animals_query = "SELECT animal_name, animalID from animals;";
+
+    $animals_statement = $db->prepare($animals_query);
+    $animals_statement->execute();
+    $animals = array();
+    
+  
+    while($row = $animals_statement->fetch()) {
+        $animals[$row['animal_name']] = $row['animalID'];
+    }
 
     if (isset($_POST['submit'])) {
 
-        #inserting into employee table
-        $insert_employee_query = "INSERT INTO employee(employee_name, rating, charging_rate, phone, email, description, zipcode, password) VALUES (:_employee_name, NULL, NULL, :_phone, :_email, :_description, :_zipcode, :_passw) ";
+        //Inserting into employee table
+        $insert_employee_query = "INSERT INTO employee(employee_name, rating, charging_rate, phone, email, description, zipcode, password) VALUES (:_employee_name, NULL, NULL, :_phone, :_email, :_description, :_zipcode, :_passw);";
 
-        $space = " ";
-        
+        $space = " ";        
         $full_name = $_POST['fname'] .$space .$_POST['lname'];
 
         $insert_employee_statement = $db->prepare($insert_employee_query);
@@ -33,8 +43,8 @@
             echo $e->getMessage();
         }
 
-        #inserting into employee_willing_animals table
-        $employee_query = "SELECT employeeID from employee WHERE employee_name = :_emp_name AND email = :_email" ;
+        //Inserting into employee_willing_animals table
+        $employee_query = "SELECT employeeID from employee WHERE employee_name = :_emp_name AND email = :_email;";
         $employee_statement = $db->prepare($employee_query);
         $employee_statement->bindValue(":_emp_name", $full_name);
         $employee_statement->bindValue(":_email", $_POST['email']);
@@ -45,14 +55,14 @@
             echo $e->getMessage();
             header("sql_error.php");
         }
+		
         $employee = $employee_statement->fetch();
-        //if successfully inserted into employee table and query works fine, then add to employee willing animals table
+        
+		//If successfully inserted into employee table and query works fine, then add to employee willing animals table
         if($employee_statement->rowCount() == 1) {
-
-            
             foreach($animals as $animal => $id) {
 
-                #if the checkbox has been checked
+                //If the checkbox has been checked
                 if ($_POST[$animal]) {
                     #insert into employee_willing_animals
                     $insert_empWilling_query = "INSERT INTO employee_willing_animals VALUES (:_empID, :_animalID);";
@@ -82,23 +92,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link ref="stylesheet" href="../css/style.css">
     <title>Form</title>
+	<link rel="stylesheet" href="../css/style.css">
+    <title>Employee Sign-Up</title>
 </head>
 <body>
-    <h2>Sign Up Employee Form</h2>
+    <h2>Employee Sign-Up</h2>
+	<div class="topnav">
+		<ul>
+			<li><a href="homepage.php">Home</a></li>
+			<li><a class="active" href="employeeSignup.php">Employee Sign-Up</a></li>
+			<li><a href="customerSignUp.php">Customer Sign-Up</a></li>
+			<li><a href="login.php">Login</a></li>
+			<li><a href="logout.php">Logout</a></li>
+		</ul>
+	</div>
     <form action="#" method = "post">
-        <label for="fname">First name:</label><br>
-        <input type="text" id="fname" name="fname" placeholder="John"><br><br>
-        <label for="lname">Last name:</label><br>
-        <input type="text" id="lname" name="lname" placeholder="Doe"><br><br>
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" placeholder="email@gmail.com"><br><br>
-        <label for="number">Phone number:</label><br>
-        <input type="tel" id="number" name="number" placeholder="123-456-7890"><br><br>
-        <label for="password">Password:</label><br>
-        <input type="text" id="password" name="password"><br><br>
-        <label for="zipcode">Zipcode:</label><br>
-        <input type="text" id="zipcode" name="zipcode"><br><br>
-
+        <label for="fname">First name:</label>
+        <input type="text" id="fname" name="fname" placeholder="John"><br>
+        <label for="lname">Last name:</label>
+        <input type="text" id="lname" name="lname" placeholder="Doe"><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="email@gmail.com"><br>
+        <label for="number">Phone number:</label>
+        <input type="tel" id="number" name="number" placeholder="123-456-7890"><br>
+        <label for="password">Password:</label>
+        <input type="text" id="password" name="password"><br>
+        <label for="zipcode">Zipcode:</label>
+        <input type="text" id="zipcode" name="zipcode"><br>
         <label for="animal">Which animals are you willing to take care of:</label><br>
 
         <?php foreach($animals as $animal => $id): ?>
@@ -108,9 +128,8 @@
         <?php endforeach; ?>
 
         <label for="notes">Description:</label><br>
-        <textarea id="notes" name="notes" rows="4" cols="50">
-        </textarea><br><br>
-        <input type="submit" name = "submit" value="Submit">
+        <textarea id="notes" name="notes" rows="4" cols="50"></textarea><br>
+        <input class="submit" type="submit" name="submit" value="Submit">
     </form> 
 </body>
 </html>

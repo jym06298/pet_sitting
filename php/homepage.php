@@ -1,15 +1,15 @@
 <?php
 
-// The beginning of the session
-  session_start();
+	// The beginning of the session
+	session_start();
 
-  // Making sure the user is logged in
-  if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)) 
-  {
-    header("Location: login.php");
-  }
+	// Making sure the user is logged in
+	if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)) 
+	{
+		header("Location: login.php");
+	}
 
-  require('database.php');
+	require('database.php');
 ?>
 
 <html>
@@ -20,7 +20,7 @@
 <body>
 
   <div >
-		<h1> WELCOME, <?php echo $_SESSION['username'] ."<br>" .$_SESSION['userID'] ?>!</h1>
+		<h1> WELCOME, <?php echo $_SESSION['username'] ?>!</h1>
   </div>
 
 	<div class="topnav">

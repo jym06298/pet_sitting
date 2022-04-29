@@ -4,14 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link rel="stylesheet" href="style.css">
-    <title>Animal Profile Form</title>
+	<link rel="stylesheet" href="../css/style.css">
+    <title>Animal Profile</title>
 </head>
 
 <body>
-    <h2>Animal Profile Form</h2>
+    <h2>Animal Profile</h2>
+	<div class="topnav">
+		<ul>
+			<li><a href='homepage.php'>Home</a></li>
+			<li><a href='employeeSignup.php'>Employee Sign-Up</a></li>
+			<li><a href='customerSignUp.php'>Customer Sign-Up</a></li>
+			<li><a href="login.php">Login</a></li>
+			<li><a href="logout.php">Logout</a></li>
+		</ul>
+    </div>
     <form action="/action_page.php">
-        <label for="name">Name: </label>
+        <label for="name">Your pet's name: </label>
         <input type="text" id="name" name="name" placeholder="Bobby"><br>
         <label for="animal">Choose animal type: </label>
         <select id="animal" name="animal">
@@ -33,10 +42,8 @@
         <label for="end">End Date:</label>
         <input type="date" id="end" name="end"><br>
         <label for="notes">Any additional notes: </label><br>
-        <textarea id="notes" name="notes" rows="4" cols="50">
-        
-        </textarea><br><br>
-        <input type="submit" value="Submit">
+        <textarea id="notes" name="notes" rows="4" cols="50"></textarea><br>
+        <input class="submit" type="submit" value="Submit">
     </form> 
 </body>
 </html>

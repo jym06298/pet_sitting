@@ -19,47 +19,25 @@
     WHERE E.employeeID = :_employeeID AND animal_name = :_animal_name;";
 
     $test_query = "SELECT employee_name FROM employee;";
-    //db->prepare($animal_names_query);
     
-    //db->execute();
-    try {
-        $test_stmt = $db->query($test_query);
-        $employees = $test_stmt->fetch();
-    
-        echo $employees[0];
-
-    } catch (Exception $e) {
-        echo 'Caught exception: ',  $e->getMessage(), "\n";
-    }
-
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="../css/style.css">
+		<title>Customer Requests</title>
+		
+	</head>
+	<body>
+		<h2>Customer Requests</h2>
 
-    <style>
-        #results{
-            width: 200px;
-            height: auto;
-            border-style: solid;
-        }
-
-        .img{
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 1px;
-        }
-
-        .paragraph{
-            font-size: 1.6rem;
-        }
-    </style>
+    </body>
+   
     <link rel= "stylesheet" href="../css/style.css">
     <title>Form</title>
 </head>
@@ -95,4 +73,5 @@
     <script defer src="orders.js">
     </script>
 </body>
+	
 </html>

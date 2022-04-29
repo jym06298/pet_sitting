@@ -1,5 +1,83 @@
+html {
+	font-family: arial;
+}
+
 body {
-	background-color: white;
+	margin: 10px;
+	margin-left: 25px;
+	background-color: #EEC894;
+	line-height: 2.0;
+}
+
+h2 {
+	margin: 25px;
+}
+
+#homepage_content {
+	text-align: center;
+}
+
+#homepage_pet_pic {
+	max-width: 50%; 
+	width: auto; 
+	height: auto;
+}
+
+#start_now_button {
+	display: block;
+	margin: auto;
+	margin-top: 25px;
+	font-size:25px;
+	background-color:#FFEB3B; 
+	color: rgba(0, 0, 0, 0.87);
+	padding:8px;
+	border: none;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, .6);
+}
+
+#heading {
+	text-align: center;
+}
+
+#description {
+	text-align: center;
+}
+
+.submit {
+	padding: 8px;
+	margin: 10px;
+	background-color: #FFEB3B;
+	color: rgba(0, 0, 0, 0.87);
+	border: none;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, .6);
+}
+
+.topnav {
+	margin-bottom: 25px;
+}
+
+.topnav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #f19eb3;
+}
+
+.topnav li {
+	float: left;
+}
+
+.topnav li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+.active {
+	background-color: #d07b8a;
 }
 
 /*Center with border*/
@@ -8,6 +86,7 @@ body {
   width: 50%;
   border: 3px black;
   padding: 10px;
+  margin-top: 50px;
   border-style: solid;
 }
 
@@ -21,24 +100,6 @@ body {
 .center {
     text-align: center;
 }
-/* Style the top navigation bar */
-.topnav {
-    overflow: auto;
-    background-color: black;
-}
-  
-/* Style the topnav links */
-.topnav a {
-    float: left;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-  
-/* Change color on hover */
-.topnav a:hover {
-    background-color: gray;
-    color: black;
-}
+
+
+
