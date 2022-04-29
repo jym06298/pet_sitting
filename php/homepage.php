@@ -3,7 +3,7 @@
 // The beginning of the session
   session_start();
 
-  // Making sure the user is logged in
+// Making sure the user is logged in
   if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)) 
   {
     header("Location: login.php");
@@ -14,7 +14,7 @@
 
 <html>
 	<head>
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="../css/style.css">
 	</head>
 <!-- example of how to inject php code into html code. $_SESSION['username'] was created in login.php-->
 <body>

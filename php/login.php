@@ -2,10 +2,10 @@
     session_start();
     require("database.php");
 
-
-    //checking whether submit has been pressed
-    if ( isset($_POST['submit']) ){
-        //This code block will check whether the submit button has been pressed, if it has it will query matchin emails and password
+    //Checking whether submit has been pressed
+    if(isset($_POST['submit'])){
+        
+		//If it has it will query matching email and password.
         //It will do a query on both the customers and employee table and the if else block on line 37 will set the sessions necessary
         
         //Create query string that you want to run
@@ -25,35 +25,39 @@
         $customer_login_statement->bindValue(':_email', $_POST['email']);
         $customer_login_statement->bindValue(':_passw', $_POST['password']);
 
-        //this line executes the query
+        //This line executes the query
         $employee_login_statement->execute();
         $customer_login_statement->execute();
 
-        // fetching results so it will be easily assessible using column names
+        //Fetching results so it will be easily assessible using column names
         $employee_result = $employee_login_statement->fetch();
         $customer_result = $customer_login_statement->fetch();
 
         //Checking if query returned a result.
-        if( $employee_login_statement->rowCount() == 1 ) {
+        if($employee_login_statement->rowCount() == 1 ) {
            
             //Creating a 'loggedin' session. (Sessions are like cookies(saves information) but are on server side so they are more secure)
             $_SESSION['loggedin'] = true;
+			
             //Creating a isEmployee session. We will use this session value to see whether the user is an employee or customer
             $_SESSION['isEmployee'] = true;
 
-            //the fetch result, $employee_result makes it much easier to access the values. you can use $employee_result['employee_name'] instead of
+            //The fetch result, $employee_result makes it easier to access the values. you can use $employee_result['employee_name'] instead of
             //$employee_result[0][1]
             $_SESSION['username'] = $employee_result['employee_name'];
-            //Redirecting to homepage
+            
+			//Redirecting to homepage
             header("Location: homepage.php");
         } else if ($customer_login_statement->rowCount() == 1 ) {
 
-            //Creating a 'loggedin' session. (Sessions are like cookies(saves information) but are on server side so they are more secure)
+            //Creating a 'loggedin' session.
             $_SESSION['loggedin'] = true;
-            //Creating a isEmployee session. We will use this session value to see whether the user is an employee or customer
+			
+            //Creating a isEmployee session
             $_SESSION['isEmployee'] = false;
 
             $_SESSION['username'] = $customer_result['customer_name'];
+			
             //Redirecting to homepage
             header("Location: homepage.php");
         } else {
