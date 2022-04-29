@@ -2,13 +2,13 @@
     session_start();
     require('database.php');
 
-    if( isset($_POST['submit']) ) {
+    if(isset($_POST['submit'])) {
 
-        //customer_name	phone	email	zipcode	password	
-        $insert_customer_query = "INSERT INTO customers(customer_name, phone, email, zipcode, password) VALUES (:_customer_name, :_phone, :_email, :_zipcode, :_passw) ";
-
-        $space = " ";
+        //Creating customer insert: customer_name, phone, email, zipcode, password	
+        $insert_customer_query = "INSERT INTO customers(customer_name, phone, email, zipcode, password) VALUES (:_customer_name, :_phone, :_email, :_zipcode, :_passw);";
         
+		//Used for customer first name, space, customer last name
+		$space = " ";
         $insert_employee_statement = $db->prepare($insert_customer_query);
 
         $insert_employee_statement->bindValue(':_customer_name', $_POST['fname'] .$space .$_POST['lname']);
@@ -24,9 +24,6 @@
         } catch(Exception $e) {
             echo $e->getMessage();
         }
-        
-
-
     } //if form has been submitted
 
 ?>
@@ -37,10 +34,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
+	<link rel="stylesheet" href="../css/style.css">
+    <title>Customer Signup</title>
 </head>
 <body>
-    <h2>Sign Up Customer Form</h2>
+    <h2>Customer Profile</h2>
     <form action="#" method = "post">
         <label for="fname">First name:</label><br>
         <input type="text" id="fname" name="fname" placeholder="John"><br>

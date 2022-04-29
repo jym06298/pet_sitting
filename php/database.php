@@ -3,7 +3,7 @@
     $username = 'root';
     $password = '';
 
-    // Error handling
+    //Error handling
     try {
         $db = new PDO($dsn, $username, $password);
     } catch (PDOException $e) {
@@ -11,6 +11,4 @@
         echo  '<p> Unable to connect to the database: '.$error;
         exit();
     }
-    
-
 ?>

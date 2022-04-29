@@ -73,37 +73,32 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
-</head>
-
-
-
-<body>
-<h2>Login Form</h2>
-<div class="topnav">
-        <a href='homepage.php'>Home</a>
-        <a href='employeeSignup.php'>Employee Sign-Up</a>
-        <a href='customerSignUp.php'>customer Sign-Up</a>
-        <a href='sign_out.php' style="float:right">Sign Out</a>
-        <a href='' style="float:right">orders</a>
-</div>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="../css/style.css">
+		<title>Login</title>
+	</head>
+	<body>
+		<h2>Login</h2>
+		<div class="topnav">
+			<a href='homepage.php'>Home</a>
+			<a href='employeeSignup.php'>Employee Sign-Up</a>
+			<a href='customerSignUp.php'>Customer Sign-Up</a>
+		</div>
     
-<form method = "post" action="#">
-    <label for="email">Email:</label> <br /><input 
-id="email" name="email" type="text" /><br /><br /><label 
-for="password">Password:</label><br /><input id="password" name="password" 
-type="text" /><br /><br /><input type="submit" name = "submit" value="Submit" />
-</form> 
+		<form method = "post" action="#">
+			<label for="email" placeholder="email@gmail.com">Email:</label>
+			<input id="email" name="email" type="text"><br>
+			<label for="password">Password:</label>
+			<input id="password" name="password" type="text"><br>
+			<input type="submit" name = "submit" value="Submit">
+		</form> 
 
-<div>
-    <a href='customerSignup.php'>customer signup</a>
-    <a href="employeeSignup.php">employee signup</a>
-</div>
-
-
-</body>
+		<div>
+			<a href='customerSignup.php'>Customer Sign-up</a>
+			<a href="employeeSignup.php">Employee Sign-up</a>
+		</div>
+	</body>
 </html>

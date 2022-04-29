@@ -1,12 +1,18 @@
+html {
+	font-family: arial;
+}
+
 body {
 	background-color: #EEC894;
+	line-height: 2.0;
 }
 
 .centeredWithBorder {
-   margin: auto;
+  margin: auto;
   width: 50%;
   border: 3px black;
   padding: 10px;
+  margin-top: 50px;
   border-style: solid;
 }
 

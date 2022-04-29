@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link rel="stylesheet" href="style.css">
-    <title>Animal Profile Form</title>
+	<link rel="stylesheet" href="../css/style.css">
+    <title>Animal Signup</title>
 </head>
 
 <body>
-    <h2>Animal Profile Form</h2>
+    <h2>Animal Profile</h2>
     <form action="/action_page.php">
-        <label for="name">Name: </label>
+        <label for="name">Your pet's name: </label>
         <input type="text" id="name" name="name" placeholder="Bobby"><br>
         <label for="animal">Choose animal type: </label>
         <select id="animal" name="animal">
@@ -33,9 +33,7 @@
         <label for="end">End Date:</label>
         <input type="date" id="end" name="end"><br>
         <label for="notes">Any additional notes: </label><br>
-        <textarea id="notes" name="notes" rows="4" cols="50">
-        
-        </textarea><br><br>
+        <textarea id="notes" name="notes" rows="4" cols="50"></textarea><br>
         <input type="submit" value="Submit">
     </form> 
 </body>
