@@ -17,9 +17,9 @@
 		<link rel="stylesheet" href="../css/style.css">
 	</head>
 <!-- example of how to inject php code into html code. $_SESSION['username'] was created in login.php-->
-<body>
 
-  <div >
+	<body>
+	<div >
 		<h1> WELCOME, <?php echo $_SESSION['username'] ?>!</h1>
   </div>
   	<div class="together">
@@ -47,23 +47,18 @@
     </ul>
 	</div><br>
 
-<!--
-<div class="row">
-<div class="leftcolumn" style="font-size: large; line-height: 2.0; text-align: center;">Pet-sitting at your convenience! Just post and certified pet sitters in your area will come at your service.</div>
-<div class="rightcolumn">
- 
-</div>
--->
-<div class = "center">
-  <img style="max-width: 50%; width: auto; height: auto;" src="https://cdn.pixabay.com/photo/2018/10/01/09/21/pets-3715733_1280.jpg" alt="Pets" />
-</div>
-
-<div class="center">
-<button style="font-size:32px;background-color:#FFEB3B; color:rgba(0, 0, 0, 0.87);padding:10px;border:none;  box-shadow: 0 2px 4px rgba(0, 0, 0, .6);">START NOW</button>
-</div>
-
-<div class="footer">&nbsp;</div>
-
+	<div class = "center">
+	    <img src="https://cdn.pixabay.com/photo/2018/10/01/09/21/pets-3715733_1280.jpg">
+        <h2> WELCOME, <?php echo $_SESSION['username'] ?>!</h2>
+        <p>
+            DBMS Petsitting Co. is a imaginary company that are created during the Spring semester of 2022. 
+            It was created by Miriam Talamantes, Jun Mun, Hyemi Byun, and Trisha Nayak. The idea of this company is 
+            to have a service where pet owners and pet sitters are able to connect. Any pet owners with an account registered 
+            can create an order request and any available pet sitters are able to select orders they are able to fulfill. 
+            Whether you are a pet owner or a pet sitter, click the button below to get started by creating an account today! 
+        </p>
+        <button id="start_now_button">START NOW</button>
+	</div>
 </body>
 </html>
 

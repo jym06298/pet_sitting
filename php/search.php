@@ -58,6 +58,14 @@
             <?php endforeach ?>
 
             </select><br><br>
+            <label for="search">If you would like to filter by employee rating, please select a rating.</label><br>
+            <select id="search" name="search">
+
+            <?php foreach($employee as $employeeRating => $rating): ?>
+                <option value=<?php echo $employeeRating ?> ><?php echo $employeeRating ?></option>
+            <?php endforeach ?>
+
+            </select><br><br>
 
             <input type="submit" value="Submit" onClick="clickedSubmit()">
 
@@ -65,17 +73,15 @@
 
         
         <div id="results">
-        <div class="card">
-            <h2>Animal Name</h2>
-            <p>Animal Type</p>
-            <p>Description</p>
-            <p>Begin Date: </p>
-            <p>End Date: </p>
-            
+            <div class="card">
+                <h2>Animal Name</h2>
+                <p>Animal Type</p>
+                <p>Description</p>
+                <p>Begin Date: </p>
+                <p>End Date: </p>
+                
+            </div>
         </div>
-        
-           
-    </div>
 
         <script defer src="orders.js">
         </script>
