@@ -94,13 +94,25 @@
         <h1>DBMS Petsitting Co.</h1>
     </div>
     <div class="topnav">
-            <a href='homepage.php'>Home</a>
-            <a href="employeeProfile.php">Profile</a>
-            <a href='employeeSignup.php'>Employee Sign-Up</a>
-            <a href='customerSignUp.php'>customer Sign-Up</a>
-            <a href='logout.php' style="float:right">Sign Out</a>
-            <a href='' style="float:right">orders</a>
-    </div>
+    <ul>
+		<li><a href="homepage.php">Home</a></li>
+    <!--SHOULD ADD LOGIC WHERE IT WILL GO TO EMPLOYEE PROFILE OR CUSTOMER PROFILE -->
+    <li><a href= <?php
+                if ($_SESSION['isEmployee']) {
+                    echo "employeeProfile.php";
+                } else {
+                    echo "customerProfile.php";
+                } //if else
+      ?> >Profile</a> </li>
+		<li><a href="employeeSignup.php">Employee Sign-Up</a></li>
+		<li><a href="customerSignUp.php">Customer Sign-Up</a></li>
+        <li><a href="animalSignup.php">Create Pet Account</a></li>
+        <li><a href="createPosts.php">Create Post</a></li>
+        <li><a href="posts.php">Posts</a></li>
+		<li><a href="login.php">Login</a> </li>
+		<li><a href="logout.php">Logout</a></li>
+    </ul>
+	</div><br>
 
     <div class="center">
         <form method = "post" action="#">

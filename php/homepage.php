@@ -4,11 +4,12 @@
 	session_start();
 
 	// Making sure the user is logged in
+  /*
 	if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)) 
 	{
 		header("Location: login.php");
 	}
-
+*/
 	require('database.php');
 ?>
 
@@ -20,12 +21,14 @@
 
 	<body>
 	<div >
-		<h1> WELCOME, <?php echo $_SESSION['username'] ?>!</h1>
+		
   </div>
   	<div class="together">
 	  	<a href="homepage.php"><img class="logoImg" src="../pawprint.png"></a>
         <h1>DBMS Petsitting Co.</h1>
     </div>
+
+    <h1> WELCOME, <?php if($_SESSION['loggedin']){echo $_SESSION['username'];} else {echo "Guest";} ?>!</h1>
 	<div class="topnav">
     <ul>
 		<li><a href="homepage.php">Home</a></li>
