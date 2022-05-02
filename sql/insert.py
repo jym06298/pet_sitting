@@ -116,7 +116,7 @@ for animal in animals:
 
 start_date = datetime.datetime.now()
 end_date = datetime.datetime(start_date.year, 4, 30)
-
+print("inserted into animals table successfully")
 #l = generate_random_time(start_date, end_date)
 
 
@@ -133,7 +133,7 @@ for i in range(num_employees):
     passw = "pass"
     cursor.execute( insert_query('employee', employee_name = full_name, rating = rating, charging_rate= charging_rate, phone = phone, email = email, description = description, zipcode = zip, password = passw) )
     db.commit()
-
+print("inserted into employee table successfully")
 
 
 #inserting into employee_willing_animals
@@ -143,10 +143,10 @@ for i in range(num_employees):
 
         animal_id = random.choice(temp_list)
         if animal_id in temp_list:
-            print("inserting into table employeeID:{} animalID:{}".format(i,animal_id))
             temp_list.remove(animal_id)
             cursor.execute(insert_query('employee_willing_animals', employeeID = i + 1,animalID = animal_id))
             db.commit()
+print("inserted into employee_willing_animals successfully")
             
 
 # Dog, cat, fish, reptile, rodent
