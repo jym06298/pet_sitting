@@ -64,7 +64,7 @@
             $_SESSION['userID'] = $customer_result['customerID'];
 			
             //Redirecting to homepage
-#            header("Location: homepage.php");
+            header("Location: homepage.php");
         } else {
             //For now I am just echoing (printing out) that something went wrong. We might want to create and redirect to a login_error.php page for styling and all that
             echo "Something went wrong with your login. Please try again";

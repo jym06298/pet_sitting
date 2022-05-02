@@ -11,6 +11,7 @@ if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true))
 }
 
 require('database.php');
+
 ?>
 
 <html>
@@ -44,22 +45,34 @@ require('database.php');
 <div class="grid">
 
 
- <?php foreach ($products as $product) : ?>
-
-   <div class="card">
-     <div class="title"><p><?php echo $product['productName']; ?></p></div>
-     <img src=<?php echo $product['imageURL'];?> alt=<?php echo $product['productName']; ?>>
-     <p class="price">$<?php echo $product['price'];?></p>
-     <form action="add_to_cart.php" method="post">
-       <input type="hidden" name="productID"value="<?php echo $product['productID']; ?>">
-       <input type="hidden" name="uri"value="<?php echo $_SERVER['QUERY_STRING']; ?>">
-       <input type="submit" value="Add to Cart" name="submit"></form>
-   </div>
-
- <?php endforeach; ?>
- -->
+ 
  </div>
-
+-->
+<form action="#" method="post">
+        <label for="name">Your pet's name: </label>
+        <input type="text" id="name" name="name" placeholder="Bobby"><br>
+        <label for="animal">Choose animal type: </label>
+        <select id="animal" name="animal">
+            <?php foreach($animals as $animal => $id): ?>
+                <option value= <?php echo $animal ?> ><?php echo $animal ?> </option>
+            <?php endforeach ?>
+   
+        </select><br>
+        <label for="age">How old is your pet:</label>
+        <select id="age" name="age">
+            <option value="underOne">Less than a year old</option>
+            <option value="young">1-3</option>
+            <option value="mid">3-7</option>
+            <option value="old">7+</option>
+        </select><br>
+        <label for="begin">Begin Date:</label>
+        <input type="datetime-local" id="begin" name="begin">
+        <label for="end">End Date:</label>
+        <input type="datetime-local" id="end" name="end"><br>
+        <label for="notes">Any additional notes: </label><br>
+        <textarea id="notes" name="notes" rows="4" cols="50"></textarea><br>
+        <input class="submit" type="submit" name = "submit" value="Submit">
+    </form> 
 
 
 <div class="footer">&nbsp;</div>

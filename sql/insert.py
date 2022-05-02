@@ -117,7 +117,7 @@ for animal in animals:
 start_date = datetime.datetime.now()
 end_date = datetime.datetime(start_date.year, 4, 30)
 
-l = generate_random_time(start_date, end_date)
+#l = generate_random_time(start_date, end_date)
 
 
 #employeeID	employee_name	rating	charging_rate	phone	email	description	zipcode	

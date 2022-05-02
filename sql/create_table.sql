@@ -51,12 +51,13 @@ CREATE TABLE customers (
     PRIMARY KEY (customerID)
 );
 CREATE TABLE pet_accounts (
-    petID int(4) NOT NULL PRIMARY KEY,
+    petID int(4) NOT NULL AUTO_INCREMENT,
     pet_name varchar(28),
     customerID int(4) NOT NULL,
     animalID int(4) NOT NULL,
     FOREIGN KEY (animalID) REFERENCES animals(animalID),
-    FOREIGN KEY (customerID) REFERENCES customers(customerID)
+    FOREIGN KEY (customerID) REFERENCES customers(customerID),
+    PRIMARY KEY (petID)
 );
 CREATE TABLE orders (
     orderID int(4) NOT NULL PRIMARY KEY,
