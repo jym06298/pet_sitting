@@ -27,22 +27,24 @@
         <h1>DBMS Petsitting Co.</h1>
     </div>
 	<div class="topnav">
-		<a href="homepage.php">Home</a>
+    <ul>
+		<li><a href="homepage.php">Home</a></li>
     <!--SHOULD ADD LOGIC WHERE IT WILL GO TO EMPLOYEE PROFILE OR CUSTOMER PROFILE -->
-    <a href= <?php
+    <li><a href= <?php
       if ($_SESSION['isEmployee']) {
         echo "employeeProfile.php";
       } else {
         echo "customerProfile.php";
       } //if else
-      ?> >Profile</a>
-		<a href="employeeSignup.php">Employee Sign-Up</a>
-		<a href="customerSignUp.php">Customer Sign-Up</a>
-    <a href="animalSignup.php">Create Pet Account</a>
-    <a href="createPosts.php">Create Post</a>
-    <a href="posts.php">Posts</a>
-		<a href="login.php">Login</a> 
-		<a href="logout.php">Logout</a>
+      ?> >Profile</a> </li>
+		<li><a href="employeeSignup.php">Employee Sign-Up</a></li>
+		<li><a href="customerSignUp.php">Customer Sign-Up</a></li>
+    <li><a href="animalSignup.php">Create Pet Account</a></li>
+    <li><a href="createPosts.php">Create Post</a></li>
+    <li><a href="posts.php">Posts</a></li>
+		<li><a href="login.php">Login</a> </li>
+		<li><a href="logout.php">Logout</a></li>
+    </ul>
 	</div><br>
 
 <!--
