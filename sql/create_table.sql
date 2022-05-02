@@ -65,7 +65,8 @@ CREATE TABLE orders (
     begin_time datetime NOT NULL,
     end_time datetime NOT NULL,
     cost float(8,2) NOT NULL,
-    petID int(4) NOT NULL
-);
+    petID int(4) NOT NULL,
+    description varchar(1000)
+); 
 
 

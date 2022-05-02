@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    require('queryAnimals.php');
+    #petID	pet_name	customerID	animalID	
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,16 +27,15 @@
 			<li><a href="logout.php">Logout</a></li>
 		</ul>
     </div>
-    <form action="/action_page.php">
+    <form action="#">
         <label for="name">Your pet's name: </label>
         <input type="text" id="name" name="name" placeholder="Bobby"><br>
         <label for="animal">Choose animal type: </label>
         <select id="animal" name="animal">
-            <option value="dog">Dog</option>
-            <option value="cat">Cat</option>
-            <option value="fish">Fish</option>
-            <option value="Reptile">Reptile</option>
-            <option value="Rodent">Rodent</option>
+            <?php foreach($animals as $animal => $id): ?>
+                <option value= <?php echo $animal ?> ><?php echo $animal ?> </option>
+            <?php endforeach ?>
+   
         </select><br>
         <label for="age">How old is your pet:</label>
         <select id="age" name="age">
@@ -38,12 +45,12 @@
             <option value="old">7+</option>
         </select><br>
         <label for="begin">Begin Date:</label>
-        <input type="date" id="begin" name="begin">
+        <input type="datetime" id="begin" name="begin">
         <label for="end">End Date:</label>
-        <input type="date" id="end" name="end"><br>
+        <input type="datetime" id="end" name="end"><br>
         <label for="notes">Any additional notes: </label><br>
         <textarea id="notes" name="notes" rows="4" cols="50"></textarea><br>
-        <input class="submit" type="submit" value="Submit">
+        <input class="submit" type="submit" name = "submit" value="Submit">
     </form> 
 </body>
 </html>

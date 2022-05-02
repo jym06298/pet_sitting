@@ -28,6 +28,8 @@
     <a href="employeeProfile.php">Profile</a>
 		<a href="employeeSignup.php">Employee Sign-Up</a>
 		<a href="customerSignUp.php">Customer Sign-Up</a>
+    <a href="animalSignup.php">Create Pet Account</a>
+
 		<a href="login.php">Login</a> 
 		<a href="logout.php">Logout</a>
 	</div><br>
