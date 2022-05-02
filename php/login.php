@@ -83,35 +83,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link ref="stylesheet" href="style.css">
-    <title>Form</title>
+    <title>Login</title>
 </head>
 
 
 
 <body>
-<h2>Login Form</h2>
-<div class="topnav">
-        <a href='homepage.php'>Home</a>
-        <a href="employeeProfile.php">Profile</a>
-        <a href='employeeSignup.php'>Employee Sign-Up</a>
-        <a href='customerSignUp.php'>customer Sign-Up</a>
-        <a href='logout.php' style="float:right">Sign Out</a>
-        <a href='' style="float:right">orders</a>
-</div>
+    <div class="together">
+        <a href="homepage.php"><img class="logoImg" src="../pawprint.png"></a>
+        <h1>DBMS Petsitting Co.</h1>
+    </div>
+    <div class="topnav">
+            <a href='homepage.php'>Home</a>
+            <a href="employeeProfile.php">Profile</a>
+            <a href='employeeSignup.php'>Employee Sign-Up</a>
+            <a href='customerSignUp.php'>customer Sign-Up</a>
+            <a href='logout.php' style="float:right">Sign Out</a>
+            <a href='' style="float:right">orders</a>
+    </div>
 
-<div class="center">
-<form method = "post" action="#">
-    <label for="email">Email:</label> <br /><input 
-id="email" name="email" type="text" /><br /><br /><label 
-for="password">Password:</label><br /><input id="password" name="password" 
-type="text" /><br /><br /><input type="submit" name = "submit" value="Submit" />
-</form> 
+    <div class="center">
+        <form method = "post" action="#">
+            <label for="email">Email:</label> <br /><input 
+        id="email" name="email" type="text" /><br /><br /><label 
+        for="password">Password:</label><br /><input id="password" name="password" 
+        type="text" /><br /><br /><input type="submit" name = "submit" value="Submit" />
+        </form> 
 
-<div>
-    <a href='customerSignup.php'>customer signup</a>
-    <a href="employeeSignup.php">employee signup</a>
-</div>
-</div>
+        <div>
+            <a href='customerSignup.php'>customer signup</a>
+            <a href="employeeSignup.php">employee signup</a>
+        </div>
+    </div>
 
 </body>
 	

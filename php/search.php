@@ -31,47 +31,53 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="../css/style.css">
 		<title>Customer Requests</title>
-		
-	</head>
-	<body>
-		<h2>Customer Requests</h2>
 
+    </head>
+    <body>
+        <div class="together">
+            <a href="homepage.php"><img class="logoImg" src="../pawprint.png"></a>
+            <h1>DBMS Petsitting Co.</h1>
+        </div>
+
+        <div class="topnav">
+            <a href="homepage.php">Home</a>
+            <a href="employeeProfile.php">Profile</a>
+            <a href="employeeSignup.php">Employee Sign-Up</a>
+            <a href="customerSignUp.php">Customer Sign-Up</a>
+            <a href="login.php">Login</a> 
+            <a href="logout.php">Logout</a>
+        </div><br>
+
+        <!--This form should lead to the cards page-->
+        <form >
+            <label for="search">What animal would you like to watched?</label><br>
+            <select id="search" name="search">
+
+            <?php foreach($animals as $animal => $animalID): ?>
+                <option value=<?php echo $animal ?> ><?php echo $animal ?></option>
+            <?php endforeach ?>
+
+            </select><br><br>
+
+            <input type="submit" value="Submit" onClick="clickedSubmit()">
+
+        </form><br><br>
+
+        <div id="results">
+        <div class="card">
+            <h2>Animal Name</h2>
+            <p>Animal Type</p>
+            <p>Description</p>
+            <p>Begin Date: </p>
+            <p>End Date: </p>
+            
+        </div>
+        
+           
+    </div>
+
+        <script defer src="orders.js">
+        </script>
     </body>
-   
-    <link rel= "stylesheet" href="../css/style.css">
-    <title>Form</title>
-</head>
-<body>
-    <h2>Customer Request Form</h2>
-
-    <div class="topnav">
-		<a href="homepage.php">Home</a>
-        <a href="employeeProfile.php">Profile</a>
-		<a href="employeeSignup.php">Employee Sign-Up</a>
-		<a href="customerSignUp.php">Customer Sign-Up</a>
-		<a href="login.php">Login</a> 
-		<a href="logout.php">Logout</a>
-	</div><br>
-
-    <!--This form should lead to the cards page-->
-    <form >
-        <label for="search">What animal would you like to watched?</label><br>
-        <select id="search" name="search">
-
-        <?php foreach($animals as $animal => $animalID): ?>
-            <option value=<?php echo $animal ?> ><?php echo $animal ?></option>
-        <?php endforeach ?>
-
-        </select><br><br>
-
-        <input type="submit" value="Submit" onClick="clickedSubmit()">
-
-    </form><br><br>
-
-    <div id="results"></div>
-
-    <script defer src="orders.js">
-    </script>
-</body>
 	
 </html>

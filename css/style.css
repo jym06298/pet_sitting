@@ -10,7 +10,8 @@ body {
 }
 
 h2 {
-	margin: 25px;
+	font-family: "Trattatello";
+    margin-left: 50px;
 }
 
 #homepage_content {
@@ -28,7 +29,7 @@ h2 {
 	margin: auto;
 	margin-top: 25px;
 	font-size:25px;
-	background-color:#FFEB3B; 
+	background-color:#f19eb3; 
 	color: rgba(0, 0, 0, 0.87);
 	padding:8px;
 	border: none;
@@ -45,8 +46,8 @@ h2 {
 
 .submit {
 	padding: 8px;
-	margin: 10px;
-	background-color: #FFEB3B;
+	margin-top: 15px;
+	background-color: #f19eb3;
 	color: rgba(0, 0, 0, 0.87);
 	border: none;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, .6);
@@ -80,6 +81,18 @@ h2 {
 	background-color: #d07b8a;
 }
 
+.together{
+    display: flex;
+    
+}   
+
+.logoImg{
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    
+}
+
 /*Center with border*/
 .centeredWithBorder {
   margin: auto;
@@ -102,4 +115,20 @@ h2 {
 }
 
 
+/* Style the counter cards */
+.card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+	padding: 16px;
+	text-align: center;
+	background-color: #f1f1f1;
+	width: 25%;
+	margin-right: 15px;
+	margin-bottom: 15px;
+  }
+  
+  #results{
+	  display: flex;
+	  flex-wrap: wrap;
+  
+  }
 

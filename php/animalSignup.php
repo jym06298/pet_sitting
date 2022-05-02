@@ -9,7 +9,10 @@
 </head>
 
 <body>
-    <h2>Animal Profile</h2>
+    <div class="together">
+        <a href="homepage.php"><img class="logoImg" src="../pawprint.png"></a>
+        <h1>DBMS Petsitting Co.</h1>
+    </div>
 	<div class="topnav">
 		<ul>
 			<li><a href='homepage.php'>Home</a></li>
