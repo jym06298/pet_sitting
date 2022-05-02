@@ -13,12 +13,14 @@
         $pet_insert_statement->bindValue(":_pet_name", $_POST['name']);
         $pet_insert_statement->bindValue(":_customerID", $_SESSION['userID']);
         $pet_insert_statement->bindValue(":_animalID", $animals[$_POST['animal']]);
+         
 
         try {
             $pet_insert_statement->execute();
         } catch(Exception $e) {
             echo $e->getMessage();
         }
+
     }
 
 ?>

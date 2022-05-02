@@ -89,7 +89,7 @@ cursor = db.cursor()
 first_names = []
 last_names = []
 pet_names =  []
-animals = ["dog", "cat", "fish", "reptile", "rodent"]
+animals = ["dog", "cat", "fish", "reptile", "rodent", "pig"]
 num_employees = 30
 
 with open('names/first_name.txt', 'r') as f:
@@ -140,13 +140,14 @@ for i in range(num_employees):
 for i in range(num_employees):
     temp_list = incremental_list(1, len(animals) + 1)    
     for j in range(random.randrange(1,6)):
-#        animal_id = random.randrange(1, len(animals) + 1)
+
         animal_id = random.choice(temp_list)
-        if animal_id not in temp_list:
-            print("inserting into table")
+        if animal_id in temp_list:
+            print("inserting into table employeeID:{} animalID:{}".format(i,animal_id))
             temp_list.remove(animal_id)
             cursor.execute(insert_query('employee_willing_animals', employeeID = i + 1,animalID = animal_id))
             db.commit()
+            
 
 # Dog, cat, fish, reptile, rodent
 

@@ -28,11 +28,19 @@
     </div>
 	<div class="topnav">
 		<a href="homepage.php">Home</a>
-    <a href="employeeProfile.php">Profile</a>
+    <!--SHOULD ADD LOGIC WHERE IT WILL GO TO EMPLOYEE PROFILE OR CUSTOMER PROFILE -->
+    <a href= <?php
+      if ($_SESSION['isEmployee']) {
+        echo "employeeProfile.php";
+      } else {
+        echo "customerProfile.php";
+      } //if else
+      ?> >Profile</a>
 		<a href="employeeSignup.php">Employee Sign-Up</a>
 		<a href="customerSignUp.php">Customer Sign-Up</a>
     <a href="animalSignup.php">Create Pet Account</a>
-    <a href="">Posts</a>
+    <a href="createPosts.php">Create Post</a>
+    <a href="posts.php">Posts</a>
 		<a href="login.php">Login</a> 
 		<a href="logout.php">Logout</a>
 	</div><br>

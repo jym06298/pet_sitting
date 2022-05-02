@@ -6,22 +6,19 @@
 
   
   if (isset($_SESSION['loggedin'])) {
-   
-    $animal_names_query = "CALL get_employee_willing_animal_names(:_employeeID)";
-    $animal_names_statement = $db->prepare($animal_names_query);
-    $animal_names_statement->bindValue(":_employeeID", $_SESSION['userID']);
+   # Query all the pets that the customer has.
+    $pet_query = "SELECT * FROM pet_accounts WHERE customerID = :_customerID;";
+    $pet_query_statement = $db->prepare($pet_query);
+    $pet_query_statement->bindValue(":_customerID", $_SESSION['userID']);
 
     try {
-      $animal_names_statement->execute();
+        $pet_query_statement->execute();
+        $pets = $pet_query_statement->fetchAll();
     } catch(Exception $e) {
-      echo $e->getMessage();
-    }
+        echo $e->getMessage();
+    } //try catch
 
-    $employee_willing_animals = array();
-
-    while( $row = $animal_names_statement->fetch() ) {
-      array_push($employee_willing_animals, $row['animal_name']);
-    }
+   
 
   } //if
 
@@ -30,7 +27,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title> Employee Profile </title>
+    <title> Customer Profile </title>
     <link rel="stylesheet" href="../css/style.css">
 
 </head>
@@ -57,12 +54,14 @@
 
       <!-- PHP to list the animals employee is willing to take care of HERE -->
       <div>
-        Animals you are willing to take care of:
+        Your pets:
 
         <ul>
-
-        <?php foreach($employee_willing_animals as $animal): ?>
-          <li><?php echo $animal ?></li>
+        <?php if ($pet_query_statement->rowCount() == 0): ?>
+            <li>You have no pets signed up</li>
+        <?php endif ?>
+        <?php foreach($pets as $pet): ?>
+          <li><?php echo $pet['pet_name'] ?></li>
         <?php endforeach ?>
 
           

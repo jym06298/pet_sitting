@@ -8,9 +8,26 @@ session_start();
 if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)) 
 {
     header("Location: login.php");
+} else {
+    #check that the user is a customer, not an employee
+    if($_SESSION['isEmployee']) {
+        #send to error page 
+    }
 }
 
 require('database.php');
+
+# Query all the pets that the customer has.
+$pet_query = "SELECT * FROM pet_accounts WHERE customerID = :_customerID;";
+$pet_query_statement = $db->prepare($pet_query);
+$pet_query_statement->bindValue(":_customerID", $_SESSION['userID']);
+
+try {
+    $pet_query_statement->execute();
+    $pets = $pet_query_statement->fetchAll();
+} catch(Exception $e) {
+    echo $e->getMessage();
+} //try catch
 
 ?>
 
@@ -34,37 +51,16 @@ require('database.php');
     <a href="logout.php">Logout</a>
 </div><br>
 
-<!--
-<div class="row">
-<div class="leftcolumn" style="font-size: large; line-height: 2.0; text-align: center;">Pet-sitting at your convenience! Just post and certified pet sitters in your area will come at your service.</div>
-<div class="rightcolumn">
 
-</div>
-
-
-<div class="grid">
-
-
- 
- </div>
--->
 <form action="#" method="post">
-        <label for="name">Your pet's name: </label>
-        <input type="text" id="name" name="name" placeholder="Bobby"><br>
-        <label for="animal">Choose animal type: </label>
+        
         <select id="animal" name="animal">
-            <?php foreach($animals as $animal => $id): ?>
-                <option value= <?php echo $animal ?> ><?php echo $animal ?> </option>
+            <?php foreach($pets as $pet): ?>
+                <option value= <?php echo $pet['pet_name'] ?> ><?php echo $pet['pet_name'] ?> </option>
             <?php endforeach ?>
    
         </select><br>
-        <label for="age">How old is your pet:</label>
-        <select id="age" name="age">
-            <option value="underOne">Less than a year old</option>
-            <option value="young">1-3</option>
-            <option value="mid">3-7</option>
-            <option value="old">7+</option>
-        </select><br>
+        
         <label for="begin">Begin Date:</label>
         <input type="datetime-local" id="begin" name="begin">
         <label for="end">End Date:</label>
