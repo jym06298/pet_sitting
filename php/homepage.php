@@ -22,7 +22,10 @@
   <div >
 		<h1> WELCOME, <?php echo $_SESSION['username'] ?>!</h1>
   </div>
-
+  	<div class="together">
+	  	<a href="homepage.php"><img class="logoImg" src="../pawprint.png"></a>
+        <h1>DBMS Petsitting Co.</h1>
+    </div>
 	<div class="topnav">
 		<a href="homepage.php">Home</a>
     <a href="employeeProfile.php">Profile</a>

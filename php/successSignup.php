@@ -8,6 +8,10 @@
 		<title>Success!</title>
 	</head>
 	<body>
+		<div class="together">
+			<a href="homepage.php"><img class="logoImg" src="../pawprint.png"></a>
+			<h1>DBMS Petsitting Co.</h1>
+		</div>
 		<div class="topnav">
 			<a href='homepage.php'>Home</a>
 			<a href='employeeSignup.php'>Employee Sign-Up</a>
