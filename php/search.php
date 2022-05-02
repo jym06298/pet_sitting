@@ -71,6 +71,7 @@
 
         </form><br><br>
 
+        
         <div id="results">
             <div class="card">
                 <h2>Animal Name</h2>
