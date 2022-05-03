@@ -86,13 +86,15 @@
             <input type="submit" value="Submit" onClick="clickedSubmit()">
 
         </form><br><br>
-
-        <?php foreach($posts as $post): ?>
-
-
         <div id="results">
+        <?php $i = 1;
+        foreach($posts as $post): ?>
+
+
+        
             <div class="card">
                 <?php 
+                
                 #Calling procedure to get pet name
                 $pet_query = "CALL get_pet_name(:_petID)";
                 $pet_statement = $db->prepare($pet_query);
@@ -115,7 +117,7 @@
                 } //try catch
 
                
-                $animal_type_statement->execute()
+                $animal_type_statement->execute();
 
                 ?>
                 <h2><?php echo $pet_info['pet_name']; ?></h2>
@@ -125,9 +127,10 @@
                 <p>End Date: <?php echo $post['end_time'] ?></p>
                 
             </div>
-        </div>
+        
 
         <?php endforeach ?>
+        </div>
         <script defer src="orders.js">
         </script>
     </body>
