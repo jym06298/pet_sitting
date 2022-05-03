@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require('database.php');
+    
 
     #This file(queryAnimals.php) has code that queries all animals and puts it into an array
     # where :
@@ -12,15 +12,18 @@
     #
     require('queryAnimals.php');
 
-    $animal_names_query = "SELECT E.employee_name, A.animal_name
-    FROM employee_willing_animals EW 
-    INNER JOIN employee E ON E.employeeID = EW.employeeID
-    INNER JOIN animals A ON A.animalID = EW.animalID
-    WHERE E.employeeID = :_employeeID AND animal_name = :_animal_name;";
-
-    $test_query = "SELECT employee_name FROM employee;";
+    #querying all orders(posts)
+    $orders_query = "SELECT * FROM orders WHERE employeeID IS NULL;";
+    $orders_statement = $db->prepare($orders_query);
     
-
+    try {
+        $orders_statement->execute();
+        $posts = $orders_statement->fetchAll();
+    } catch(Exception $e) {
+        echo $e->getMessage();
+    } //try catch
+    
+   
 ?>
 
 <!DOCTYPE html>
@@ -84,18 +87,47 @@
 
         </form><br><br>
 
-        
+        <?php foreach($posts as $post): ?>
+
+
         <div id="results">
             <div class="card">
-                <h2>Animal Name</h2>
-                <p>Animal Type</p>
-                <p>Description</p>
-                <p>Begin Date: </p>
-                <p>End Date: </p>
+                <?php 
+                #Calling procedure to get pet name
+                $pet_query = "CALL get_pet_name(:_petID)";
+                $pet_statement = $db->prepare($pet_query);
+                $pet_statement->bindValue(":_petID", $post['petID']);
+
+                #Calling procedure to get animal name
+                $animal_type_call = "CALL get_animal_name(:_animalID)";
+                $animal_type_statement = $db->prepare($animal_type_call);
+                try {
+                    $pet_statement->execute();
+                    $pet_info = $pet_statement->fetch();
+                    $pet_statement->closeCursor();
+                    
+                    $animal_type_statement->bindValue(":_animalID", $pet_info['animalID']);
+                    $animal_type_statement->execute();
+                    $animal_type = $animal_type_statement->fetch();
+                    $animal_type_statement->closeCursor();
+                } catch(Exception $e) {
+                    echo $e->getMessage();
+                } //try catch
+
+               
+                $animal_type_statement->execute()
+
+                ?>
+                <h2><?php echo $pet_info['pet_name']; ?></h2>
+                <p>Animal Type: <?php echo $animal_type['animal_name'] ?></p>
+                <p>Description:<br> <?php echo $post['description'] ?></p>
+                <p>Begin Date: <?php echo $post['begin_time'] ?></p>
+                <p>End Date: <?php echo $post['end_time'] ?></p>
                 
             </div>
         </div>
 
+        <?php endforeach ?>
         <script defer src="orders.js">
         </script>
     </body>

@@ -42,9 +42,12 @@
       ?> >Profile</a> </li>
 		<li><a href="employeeSignup.php">Employee Sign-Up</a></li>
 		<li><a href="customerSignUp.php">Customer Sign-Up</a></li>
-    <li><a href="animalSignup.php">Create Pet Account</a></li>
-    <li><a href="createPosts.php">Create Post</a></li>
-    <li><a href="posts.php">Posts</a></li>
+    
+    <?php if(!$_SESSION['isEmployee'] && $_SESSION['loggedin']):?>
+      <li><a href="animalSignup.php">Create Pet Account</a></li>
+      <li><a href="createPosts.php">Create Post</a></li>
+    <?php endif ?>
+    <li><a href="search.php">Posts</a></li>
 		<li><a href="login.php">Login</a> </li>
 		<li><a href="logout.php">Logout</a></li>
     </ul>

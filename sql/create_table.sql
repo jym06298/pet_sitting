@@ -60,14 +60,16 @@ CREATE TABLE pet_accounts (
     PRIMARY KEY (petID)
 );
 CREATE TABLE orders (
-    orderID int(4) NOT NULL PRIMARY KEY,
+    orderID int(4) NOT NULL AUTO_INCREMENT,
     customerID int(4) NOT NULL,
-    employeeID int(4) NOT NULL,
+    employeeID int(4),
     begin_time datetime NOT NULL,
     end_time datetime NOT NULL,
-    cost float(8,2) NOT NULL,
+    cost float(8,2),
     petID int(4) NOT NULL,
-    description varchar(1000)
+    description varchar(1000),
+    PRIMARY KEY (orderID),
+    FOREIGN KEY(customerID) REFERENCES customers(customerID),
 ); 
 
 

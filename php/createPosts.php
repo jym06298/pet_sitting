@@ -1,34 +1,66 @@
 
 <?php
 
-// The beginning of the session
-session_start();
+    // The beginning of the session
+    session_start();
 
-// Making sure the user is logged in
-if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)) 
-{
-    header("Location: login.php");
-} else {
-    #check that the user is a customer, not an employee
-    if($_SESSION['isEmployee']) {
-        #send to error page 
+    // Making sure the user is logged in
+    if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)) 
+    {
+        header("Location: login.php");
+    } else {
+        #check that the user is a customer, not an employee
+        if($_SESSION['isEmployee']) {
+            #send to error page 
+        }
     }
-}
 
-require('database.php');
+    require('database.php');
 
-# Query all the pets that the customer has.
-$pet_query = "SELECT * FROM pet_accounts WHERE customerID = :_customerID;";
-$pet_query_statement = $db->prepare($pet_query);
-$pet_query_statement->bindValue(":_customerID", $_SESSION['userID']);
+    # Query all the pets that the customer has.
+    $pet_query = "SELECT * FROM pet_accounts WHERE customerID = :_customerID;";
+    $pet_query_statement = $db->prepare($pet_query);
+    $pet_query_statement->bindValue(":_customerID", $_SESSION['userID']);
 
-try {
-    $pet_query_statement->execute();
-    $pets = $pet_query_statement->fetchAll();
-} catch(Exception $e) {
-    echo $e->getMessage();
-} //try catch
+    try {
+        $pet_query_statement->execute();
+        $pets = $pet_query_statement->fetchAll();
+    } catch(Exception $e) {
+        echo $e->getMessage();
+    } //try catch
 
+    if (isset($_POST['submit'])) {
+        #customerID	employeeID	begin_time	end_time	cost	petID	description	
+
+        $insert_order_query = "INSERT INTO orders (customerID, employeeID, begin_time, end_time, cost, petID, description) VALUES(:_customerID, NULL, :_begin_time, :_end_time, NULL, :_petID, :_description);";
+        $insert_order_statement = $db->prepare($insert_order_query);
+        $insert_order_statement->bindValue(":_customerID", $_SESSION['userID']);
+#        $insert_order_statement->bindValue(":_employeeID", "NULL");
+        $insert_order_statement->bindValue(":_begin_time", $_POST['begin']);
+        $insert_order_statement->bindValue(":_end_time", $_POST['end']);
+#        $insert_order_statement->bindValue(":_cost", "NULL");
+
+        #get petID by matching petname to name in $pets array
+        $pet_found = false;
+        $pet_ID = -1;
+        $i = 0;
+        while(!$pet_found) {
+            if ($pets[$i]['pet_name'] == $_POST['pet']) {
+                $pet_ID = $pets[$i]['petID'];
+                $pet_found = true;
+            }
+            $i = $i +1;
+        } //while
+        $insert_order_statement->bindValue(":_petID", $pet_ID);
+        $insert_order_statement->bindValue(":_description", $_POST['notes']);
+
+        try {
+            $insert_order_statement->execute();
+        } catch(Exception $e) {
+            echo $e->getMessage();
+        }
+        
+    }
 ?>
 
 <html>
@@ -66,7 +98,7 @@ try {
 
 <form action="#" method="post">
         <div>Select a pet:</div>
-        <select id="animal" name="animal">
+        <select id="pet" name="pet">
             <?php foreach($pets as $pet): ?>
                 <option value= <?php echo $pet['pet_name'] ?> ><?php echo $pet['pet_name'] ?> </option>
             <?php endforeach ?>
