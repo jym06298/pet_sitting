@@ -68,8 +68,9 @@ CREATE TABLE orders (
     cost float(8,2),
     petID int(4) NOT NULL,
     description varchar(1000),
+    completed BOOL,
     PRIMARY KEY (orderID),
-    FOREIGN KEY(customerID) REFERENCES customers(customerID),
+    FOREIGN KEY(customerID) REFERENCES customers(customerID)
 ); 
 
 

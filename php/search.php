@@ -59,6 +59,8 @@
     
 
         #Need to update orders table on cost and employeeID
+
+        #querying charging rate of current employee
         $employee_query = "SELECT charging_rate from employee WHERE employeeID = :_employeeID";
         $employee_statement = $db->prepare($employee_query);
         $employee_statement->bindValue("_employeeID", $_SESSION['userID']);
@@ -70,8 +72,11 @@
             echo $e->getMessage();
         } //try catch
 
+        #  querying the difference in datetime (in minutes)
+        #$date_difference_query = "SELECT DATEDIFF(:_begin, :_end) WHERE ;";
+
         #add logic to update orders table(employeeID)
-        $update_orders_table = "UPDATE orders SET employeeID = :_employeeID, cost = :_cost WHERE orderID = :_orderID";
+        $update_orders_table = "UPDATE orders SET employeeID = :_employeeID WHERE orderID = :_orderID";
         $update_orders_statement = $db->prepare($update_orders_table);
         $update_orders_statement->bindValue(":_employeeID", $_SESSION['userID']);
         $update_orders_statement->bindValue(":_orderID", $clicked_post[0]);
@@ -82,6 +87,7 @@
             $update_orders_statement->execute();
             header("Location: search.php");
         } catch(Exception $e) {
+            echo "line 90";
             echo $e->getMessage();
         }
 

@@ -32,7 +32,7 @@
     if (isset($_POST['submit'])) {
         #customerID	employeeID	begin_time	end_time	cost	petID	description	
 
-        $insert_order_query = "INSERT INTO orders (customerID, employeeID, begin_time, end_time, cost, petID, description) VALUES(:_customerID, NULL, :_begin_time, :_end_time, NULL, :_petID, :_description);";
+        $insert_order_query = "INSERT INTO orders (customerID, employeeID, begin_time, end_time, cost, petID, description, completed) VALUES(:_customerID, NULL, :_begin_time, :_end_time, NULL, :_petID, :_description, false);";
         $insert_order_statement = $db->prepare($insert_order_query);
         $insert_order_statement->bindValue(":_customerID", $_SESSION['userID']);
 #        $insert_order_statement->bindValue(":_employeeID", "NULL");
