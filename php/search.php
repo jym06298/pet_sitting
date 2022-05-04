@@ -12,6 +12,23 @@
     #
     require('queryAnimals.php');
 
+    function check_submits($posts_array) {
+        $i = 0;
+        while($i < $posts_array->count()) {
+
+            if (isset($_GET[$i])) {
+                echo $i;
+                return $posts_array[$i];
+            }
+
+            $i = $i + 1;
+        }
+
+        echo "Could not find the post";
+    }
+
+    
+
     #querying all orders(posts)
     $orders_query = "SELECT * FROM orders WHERE employeeID IS NULL;";
     $orders_statement = $db->prepare($orders_query);
@@ -23,6 +40,52 @@
         echo $e->getMessage();
     } //try catch
     
+    
+    
+    if ($_GET && $_SESSION['isEmployee']) {
+        $j = 1;
+        $found = false;
+
+        while($j <= count($posts)) {
+
+            if(array_key_exists($j, $_GET)) {
+                $clicked_post = $posts[$j - 1];
+                $found = true;
+                break;
+            }
+
+            $j = $j + 1;
+        }
+    
+
+        #Need to update orders table on cost and employeeID
+        $employee_query = "SELECT charging_rate from employee WHERE employeeID = :_employeeID";
+        $employee_statement = $db->prepare($employee_query);
+        $employee_statement->bindValue("_employeeID", $_SESSION['userID']);
+
+        try{
+            $employee_statement->execute();
+            $employee_rate = $employee_statement->fetch();
+        } catch(Exception $e) {
+            echo $e->getMessage();
+        } //try catch
+
+        #add logic to update orders table(employeeID)
+        $update_orders_table = "UPDATE orders SET employeeID = :_employeeID, cost = :_cost WHERE orderID = :_orderID";
+        $update_orders_statement = $db->prepare($update_orders_table);
+        $update_orders_statement->bindValue(":_employeeID", $_SESSION['userID']);
+        $update_orders_statement->bindValue(":_orderID", $clicked_post[0]);
+        
+        
+
+        try{
+            $update_orders_statement->execute();
+            header("Location: search.php");
+        } catch(Exception $e) {
+            echo $e->getMessage();
+        }
+
+    } //if
    
 ?>
 
@@ -38,7 +101,7 @@
     </head>
     <body>
         <div class="together">
-            <a href="homepage.php"><img class="logoImg" src="../pawprint.png"></a>
+<!--            <a href="homepage.php"><img class="logoImg" src="../pawprint.png"></a> -->
             <h1>DBMS Petsitting Co.</h1>
         </div>
 
@@ -57,7 +120,7 @@
 		<li><a href="customerSignUp.php">Customer Sign-Up</a></li>
         <li><a href="animalSignup.php">Create Pet Account</a></li>
         <li><a href="createPosts.php">Create Post</a></li>
-        <li><a href="posts.php">Posts</a></li>
+        <li><a href="search.php">Posts</a></li>
 		<li><a href="login.php">Login</a> </li>
 		<li><a href="logout.php">Logout</a></li>
     </ul>
@@ -125,10 +188,13 @@
                 <p>Description:<br> <?php echo $post['description'] ?></p>
                 <p>Begin Date: <?php echo $post['begin_time'] ?></p>
                 <p>End Date: <?php echo $post['end_time'] ?></p>
-                
+                <!-- use javascript to run php function? -->
+                <form method = "get" action= "#">
+                <input type="submit" name=<?php echo $i ?> value="Accept"></input>
+                <form>
             </div>
         
-
+                <?php $i = $i + 1; ?>
         <?php endforeach ?>
         </div>
         <script defer src="orders.js">
