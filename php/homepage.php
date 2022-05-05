@@ -9,10 +9,10 @@
 	{
 		header("Location: login.php");
 	}
-*/
+  */
 	require('database.php');
+  
 ?>
-
 <html>
 	<head>
 		<link rel="stylesheet" href="../css/style.css">
@@ -24,7 +24,9 @@
 		
   </div>
   	<div class="together">
-	  	<a href="homepage.php"><img class="logoImg" src="../pawprint.png"></a>
+	  	<a href="homepage.php">
+			<img id="logoImg" src="pawprint.png">
+		</a>
         <h1>DBMS Petsitting Co.</h1>
     </div>
 

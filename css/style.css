@@ -9,8 +9,17 @@ body {
 	line-height: 2.0;
 }
 
+h1 {
+	display: inline;
+}
+
 h2 {
 	margin: 25px;
+}
+
+#logoImg {
+	max-width: 20%;
+	display: inline;
 }
 
 #homepage_content {
