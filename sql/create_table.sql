@@ -16,8 +16,6 @@ CREATE TABLE employee (
     description TEXT(1000),
     zipcode char(5),
     password varchar(28) NOT NULL,
-    Num_Orders int(5),
-    income int(8),
     PRIMARY KEY(employeeID)
 );
 
@@ -50,7 +48,6 @@ CREATE TABLE customers (
     email varchar(100),
     zipcode char(5),
     password varchar(255),
-    total_spend float(8,2),
     PRIMARY KEY (customerID)
 );
 CREATE TABLE pet_accounts (
