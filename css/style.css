@@ -26,10 +26,14 @@ h2 {
 	text-align: center;
 }
 
-#homepage_pet_pic {
+.pet_pic {
 	max-width: 50%; 
 	width: auto; 
 	height: auto;
+}
+
+#heading {
+	text-align: center;
 }
 
 #start_now_button {

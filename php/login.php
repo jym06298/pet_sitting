@@ -80,60 +80,52 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="../css/style.css">
-    <title>Login</title>
-</head>
-
-
-
-<body>
-    <div class="together">
-        <a href="homepage.php"><img class="logoImg" src="../pawprint.png"></a>
-        <h1>DBMS Petsitting Co.</h1>
-    </div>
-    
-    <div class="topnav">
-    <ul>
-		<li><a href="homepage.php">Home</a></li>
-    <!-- EMPLOYEE PROFILE OR CUSTOMER PROFILE -->
-    <li><a href= <?php
-      if ($_SESSION['isEmployee']) {
-        echo "employeeProfile.php";
-      } else {
-        echo "customerProfile.php";
-      } //if else
-      ?> >Profile</a> </li>
-		<li><a href="employeeSignup.php">Employee Sign-Up</a></li>
-		<li><a href="customerSignUp.php">Customer Sign-Up</a></li>
-    
-    <?php if(!$_SESSION['isEmployee'] && $_SESSION['loggedin']):?>
-      <li><a href="animalSignup.php">Create Pet Account</a></li>
-      <li><a href="createPosts.php">Create Post</a></li>
-    <?php endif ?>
-    <li><a href="search.php">Posts</a></li>
-		<li><a href="login.php">Login</a> </li>
-		<li><a href="logout.php">Logout</a></li>
-    </ul>
-	</div><br>
-
-    <div class="center">
-        <form method = "post" action="#">
-            <label for="email">Email:</label> <br /><input 
-        id="email" name="email" type="text" /><br /><br /><label 
-        for="password">Password:</label><br /><input id="password" name="password" 
-        type="text" /><br /><br /><input type="submit" name = "submit" value="Submit" />
-        </form> 
-
-        <div>
-            <a href='customerSignup.php'>customer signup</a>
-            <a href="employeeSignup.php">employee signup</a>
-        </div>
-    </div>
-
-</body>
-	
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="../css/style.css">
+		<title>Login</title>
+	</head>
+	<body>
+		<div class="together">
+			<a href="homepage.php"><img id="logoImg" src="pawprint.png"></a>
+			<h1>DBMS Petsitting Co.</h1>
+		</div>
+		<div class="topnav">
+		<ul>
+			<li><a href="homepage.php">Home</a></li>
+			<!-- EMPLOYEE PROFILE OR CUSTOMER PROFILE -->
+			<li><a href= <?php
+			if ($_SESSION['isEmployee']) {
+				echo "employeeProfile.php";
+			} else {
+				echo "customerProfile.php";
+			} //if else
+			?> >Profile</a> </li>
+			<li><a href="employeeSignup.php">Employee Sign-Up</a></li>
+			<li><a href="customerSignUp.php">Customer Sign-Up</a></li>
+			<?php if(!$_SESSION['isEmployee'] && $_SESSION['loggedin']):?>
+			<li><a href="animalSignup.php">Create Pet Account</a></li>
+			<li><a href="createPosts.php">Create Post</a></li>
+			<?php endif ?>
+			<li><a href="search.php">Posts</a></li>
+			<li><a href="login.php">Login</a> </li>
+			<li><a href="logout.php">Logout</a></li>
+		</ul>
+		</div><br>
+		<div class="center">
+			<form method = "post" action="#">
+				<label for="email">Email:</label><br>
+				<input id="email" name="email" type="text"><br><br>
+				<label for="password">Password:</label><br>
+				<input id="password" name="password" type="text"<br><br>
+				<input class="submit" type="submit" name="submit" value="Submit">
+			</form> 
+			<div>
+				<a href='customerSignup.php'>Customer Sign-up</a>
+				<a href="employeeSignup.php">Employee Sign-up</a>
+			</div>
+		</div>
+	</body>
 </html>
