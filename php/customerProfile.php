@@ -124,6 +124,11 @@
 					
 				  </ul>
 			</div>
+			<form id="account_settings" action="#" method="post">
+				<h2>Account settings:</h2>
+				<h3 style="margin-left: 25px;">Delete your profile</h3>
+				<input style="margin-left: 25px;" class="submit" type="submit" name="delete" value="DELETE">
+			</form> 
 			<h3 id="heading">Pet-sitting at your convenience! Just post and certified pet sitters in your area will come at your service.</h3>
 		</div>
 		<img class="pet_pic" src="https://cdn.pixabay.com/photo/2018/10/01/09/21/pets-3715733_1280.jpg" alt="Pets" style="max-width: 100%;width:auto;height:auto;">
