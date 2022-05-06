@@ -24,7 +24,7 @@
 
     $accepted_order_query = "SELECT * FROM orders WHERE customerID = :_customerID;";
     $accepted_order_statement = $db->prepare($accepted_order_query);
-    $accepted_order_statement->bindValue(":_customerID", $_SESSION['loggedin']);
+    $accepted_order_statement->bindValue(":_customerID", $_SESSION['userID']);
 
     try {
       $accepted_order_statement->execute();

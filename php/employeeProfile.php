@@ -22,6 +22,19 @@
     while( $row = $animal_names_statement->fetch() ) {
       array_push($employee_willing_animals, $row['animal_name']);
     }
+    $animal_names_statement->closeCursor();
+
+    $accepted_order_query = "SELECT * FROM orders WHERE employeeID = :_employeeID;";
+    $accepted_order_statement = $db->prepare($accepted_order_query);
+    $accepted_order_statement->bindValue(":_employeeID", $_SESSION['userID']);
+
+    try {
+      $accepted_order_statement->execute();
+      $orders = $accepted_order_statement->fetchAll();
+
+    } catch(Exception $e) {
+        echo $e->getMessage();
+    } //try catch
 
   } //if
 
@@ -75,12 +88,35 @@
 				<?php foreach($employee_willing_animals as $animal): ?>
 				<li><?php echo $animal ?></li>
 				<?php endforeach ?>
-			</ul>
-			<h2>Order history:</h2>
-			<ul>
-				<li>list specific animal they took care of</li>
-				<li>list specific animal they took care of</li>
-			 </ul>
+
+        <h2>Orders you have accepted:</h2>
+        <ul>
+          <?php if ($accepted_order_statement->rowCount() == 0): ?>
+            <li>You have no orders</li>
+					<?php endif ?>
+
+          <?php foreach($orders as $order): ?>
+					<li>
+            <?php
+              $pet_name_procedure = "CALL get_pet_name(:_petID);";
+              $pet_name_statement = $db->prepare($pet_name_procedure);
+              $pet_name_statement->bindValue(":_petID", $order['petID']);
+
+              try {
+                $pet_name_statement->execute();
+                $pet = $pet_name_statement->fetch();
+                
+              } catch(Exception $e) {
+                  echo $e->getMessage();
+              } //try catch
+              
+              echo "Pet: " .$pet['pet_name'] ."<br>Start Time: " .$order['begin_time'] ."<br>End Time: " .$order['end_time'];
+           
+            ?>
+          </li>
+					<?php endforeach ?>
+					
+				  </ul>
 		</div>
 		<h3>Pet-sitting at your convenience! Just post and certified pet sitters in your area will come at your service.</h3>
 		<img id="pet_pic" src="https://cdn.pixabay.com/photo/2018/10/01/09/21/pets-3715733_1280.jpg" alt="Pets" style="max-width: 100%;width:auto;height:auto;">

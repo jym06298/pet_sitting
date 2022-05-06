@@ -198,7 +198,7 @@
 					<p>Begin Date: <?php echo $post['begin_time'] ?></p>
 					<p>End Date: <?php echo $post['end_time'] ?></p>
 					
-					<!-- use javascript to run php function? -->
+					
 					<form method = "get" action= "#">
 					<input type="submit" name=<?php echo $i ?> value="Accept"></input>
 					<form>
