@@ -57,7 +57,8 @@
 
 	<div class = "center">
 	    <img src="https://cdn.pixabay.com/photo/2018/10/01/09/21/pets-3715733_1280.jpg">
-        <h2> WELCOME, <?php echo $_SESSION['username'] ?>!</h2>
+        
+        
         <p>
             DBMS Petsitting Co. is a imaginary company that are created during the Spring semester of 2022. 
             It was created by Miriam Talamantes, Jun Mun, Hyemi Byun, and Trisha Nayak. The idea of this company is 
