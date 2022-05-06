@@ -41,7 +41,7 @@
 
       try {
         $delete_account_statement->execute();
-        header("Location: homepage.php");
+        header("Location: logout.php");
       } catch(Exception $e) {
           echo $e->getMessage();
       } //try catch
