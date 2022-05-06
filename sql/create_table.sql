@@ -28,7 +28,7 @@ CREATE TABLE animals (
 CREATE TABLE employee_willing_animals (
     employeeID int(4) NOT NULL,
     animalID int(4) NOT NULL,
-    FOREIGN KEY (employeeID) REFERENCES employee(employeeID),
+    FOREIGN KEY (employeeID) REFERENCES employee(employeeID) ON DELETE CASCADE,
     FOREIGN KEY (animalID) REFERENCES animals(animalID)
 );
 
@@ -47,7 +47,7 @@ CREATE TABLE pet_accounts (
     customerID int(4) NOT NULL,
     animalID int(4) NOT NULL,
     FOREIGN KEY (animalID) REFERENCES animals(animalID),
-    FOREIGN KEY (customerID) REFERENCES customers(customerID),
+    FOREIGN KEY (customerID) REFERENCES customers(customerID) ON DELETE CASCADE,
     PRIMARY KEY (petID)
 );
 CREATE TABLE orders (
@@ -61,7 +61,7 @@ CREATE TABLE orders (
     description varchar(1000),
     completed BOOL,
     PRIMARY KEY (orderID),
-    FOREIGN KEY(customerID) REFERENCES customers(customerID)
+    FOREIGN KEY(customerID) REFERENCES customers(customerID) ON DELETE CASCADE
 ); 
 
 
