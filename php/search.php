@@ -107,43 +107,43 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="../css/style.css">
 		<title>Customer Requests</title>
-
     </head>
+	
     <body>
         <div class="together">
-<!--            <a href="homepage.php"><img class="logoImg" src="../pawprint.png"></a> -->
-            <h1>DBMS Petsitting Co.</h1>
+			<a href="homepage.php"><img id="logoImg" src="pawprint.png"></a>
+			<h1>DBMS Petsitting Co.</h1>
         </div>
 
         <!-- TOP NAV BAR -->
     <div class="topnav">
-      <ul>
-      <li><a href="homepage.php">Home</a></li>
-      <!-- EMPLOYEE PROFILE OR CUSTOMER PROFILE (Dont show if not logged in)-->
-      <?php if ($_SESSION['loggedin']): ?>
-      <li><a href= <?php
-        if ($_SESSION['isEmployee']) {
-          echo "employeeProfile.php";
-        } else {
-          echo "customerProfile.php";
-        } //if else
-        ?> >Profile</a> </li>
-        <?php endif ?>
-      <li><a href="employeeSignup.php">Employee Sign-Up</a></li>
-      <li><a href="customerSignUp.php">Customer Sign-Up</a></li>
-      
-      <?php if(!$_SESSION['isEmployee'] && $_SESSION['loggedin']):?>
-        <li><a href="animalSignup.php">Create Pet Account</a></li>
-        <li><a href="createPosts.php">Create Post</a></li>
-      <?php endif ?>
-      <li><a href="search.php">Posts</a></li>
-      <li><a href="login.php">Login</a> </li>
-      <li><a href="logout.php">Logout</a></li>
-      </ul>
+		<ul>
+			<li><a href="homepage.php">Home</a></li>
+			
+			<!-- EMPLOYEE PROFILE OR CUSTOMER PROFILE (Dont show if not logged in)-->
+			<?php if ($_SESSION['loggedin']): ?>
+			<li><a href= <?php
+				if ($_SESSION['isEmployee']) {
+				  echo "employeeProfile.php";
+				} else {
+				  echo "customerProfile.php";
+				} //if else
+				?> >Profile</a> </li>
+				<?php endif ?>
+			<li><a href="employeeSignup.php">Employee Sign-Up</a></li>
+			<li><a href="customerSignUp.php">Customer Sign-Up</a></li>
+			<?php if(!$_SESSION['isEmployee'] && $_SESSION['loggedin']):?>
+			<li><a href="animalSignup.php">Create Pet Account</a></li>
+			<li><a href="createPosts.php">Create Post</a></li>
+			<?php endif ?>
+			<li><a href="search.php">Posts</a></li>
+			<li><a href="login.php">Login</a> </li>
+			<li><a href="logout.php">Logout</a></li>
+		</ul>
 	</div><br>
 
         <!--This form should lead to the cards page-->
-        <form >
+        <form>
             <label for="search">What animal would you like to watched?</label><br>
             <select id="search" name="search">
 
@@ -160,60 +160,54 @@
             <?php endforeach ?>
 
             </select><br><br>
-
-            <input type="submit" value="Submit" onClick="clickedSubmit()">
-
+            <input class="submit" type="submit" value="Submit" onClick="clickedSubmit()">
         </form><br><br>
         <div id="results">
-        <?php $i = 1;
-        foreach($posts as $post): ?>
+			<?php $i = 1;
+			foreach($posts as $post): ?>
+				<div class="card">
+					<?php 
+					
+					#Calling procedure to get pet name
+					$pet_query = "CALL get_pet_name(:_petID)";
+					$pet_statement = $db->prepare($pet_query);
+					$pet_statement->bindValue(":_petID", $post['petID']);
 
+					#Calling procedure to get animal name
+					$animal_type_call = "CALL get_animal_name(:_animalID)";
+					$animal_type_statement = $db->prepare($animal_type_call);
+					try {
+						$pet_statement->execute();
+						$pet_info = $pet_statement->fetch();
+						$pet_statement->closeCursor();
+						
+						$animal_type_statement->bindValue(":_animalID", $pet_info['animalID']);
+						$animal_type_statement->execute();
+						$animal_type = $animal_type_statement->fetch();
+						$animal_type_statement->closeCursor();
+					} catch(Exception $e) {
+						echo $e->getMessage();
+					} //try catch
+				   
+					$animal_type_statement->execute();
 
-        
-            <div class="card">
-                <?php 
-                
-                #Calling procedure to get pet name
-                $pet_query = "CALL get_pet_name(:_petID)";
-                $pet_statement = $db->prepare($pet_query);
-                $pet_statement->bindValue(":_petID", $post['petID']);
-
-                #Calling procedure to get animal name
-                $animal_type_call = "CALL get_animal_name(:_animalID)";
-                $animal_type_statement = $db->prepare($animal_type_call);
-                try {
-                    $pet_statement->execute();
-                    $pet_info = $pet_statement->fetch();
-                    $pet_statement->closeCursor();
-                    
-                    $animal_type_statement->bindValue(":_animalID", $pet_info['animalID']);
-                    $animal_type_statement->execute();
-                    $animal_type = $animal_type_statement->fetch();
-                    $animal_type_statement->closeCursor();
-                } catch(Exception $e) {
-                    echo $e->getMessage();
-                } //try catch
-
-               
-                $animal_type_statement->execute();
-
-                ?>
-                <h2><?php echo $pet_info['pet_name']; ?></h2>
-                <p>Animal Type: <?php echo $animal_type['animal_name'] ?></p>
-                <p>Description:<br> <?php echo $post['description'] ?></p>
-                <p>Begin Date: <?php echo $post['begin_time'] ?></p>
-                <p>End Date: <?php echo $post['end_time'] ?></p>
-                <!-- use javascript to run php function? -->
-                <form method = "get" action= "#">
-                <input type="submit" name=<?php echo $i ?> value="Accept"></input>
-                <form>
-            </div>
-        
-                <?php $i = $i + 1; ?>
-        <?php endforeach ?>
+					?>
+					<h2><?php echo $pet_info['pet_name']; ?></h2>
+					<p>Animal Type: <?php echo $animal_type['animal_name'] ?></p>
+					<p>Description:<br> <?php echo $post['description'] ?></p>
+					<p>Begin Date: <?php echo $post['begin_time'] ?></p>
+					<p>End Date: <?php echo $post['end_time'] ?></p>
+					
+					<!-- use javascript to run php function? -->
+					<form method = "get" action= "#">
+					<input type="submit" name=<?php echo $i ?> value="Accept"></input>
+					<form>
+				</div>
+			
+					<?php $i = $i + 1; ?>
+			<?php endforeach ?>
         </div>
         <script defer src="orders.js">
         </script>
     </body>
-	
 </html>

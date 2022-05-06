@@ -9,18 +9,31 @@ body {
 	line-height: 2.0;
 }
 
+h1 {
+	display: inline;
+}
+
 h2 {
 	margin: 25px;
+}
+
+#logoImg {
+	max-width: 20%;
+	display: inline;
 }
 
 #homepage_content {
 	text-align: center;
 }
 
-#homepage_pet_pic {
+.pet_pic {
 	max-width: 50%; 
 	width: auto; 
 	height: auto;
+}
+
+#heading {
+	text-align: center;
 }
 
 #start_now_button {

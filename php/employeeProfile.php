@@ -29,86 +29,63 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-    <title> Employee Profile </title>
-    <link rel="stylesheet" href="../css/style.css">
+	<head>
+		<title> Employee Profile </title>
+		<link rel="stylesheet" href="../css/style.css">
+	</head>
+	<body>
+		<div class="together">
+			<a href="homepage.php"><img id="logoImg" src="pawprint.png"></a>
+			<h1>DBMS Petsitting Co. Pet-Sitter</h1>
+		</div>
 
-</head>
-<body>
-    <div class="header">
-        <h1> <a href="homepage.php">Pet-Sitter</a> </h1>
-    </div>
+		<!-- TOP NAV BAR -->
+		<div class="topnav">
+			<ul>
+				<li><a href="homepage.php">Home</a></li>
+				
+				<!-- EMPLOYEE PROFILE OR CUSTOMER PROFILE (Dont show if not logged in)-->
+				<?php if ($_SESSION['loggedin']): ?>
+				<li><a href= <?php
+					if ($_SESSION['isEmployee']) {
+						echo "employeeProfile.php";
+					} else {
+						echo "customerProfile.php";
+					} //if else
+				?> >Profile</a> </li>
+				<?php endif ?>
+				<li><a href="employeeSignup.php">Employee Sign-Up</a></li>
+				<li><a href="customerSignUp.php">Customer Sign-Up</a></li>
+				<?php if(!$_SESSION['isEmployee'] && $_SESSION['loggedin']):?>
+				<li><a href="animalSignup.php">Create Pet Account</a></li>
+				<li><a href="createPosts.php">Create Post</a></li>
+				<?php endif ?>
+				<li><a href="search.php">Posts</a></li>
+				<li><a href="login.php">Login</a> </li>
+				<li><a href="logout.php">Logout</a></li>
+			</ul>
+		</div><br>
+	  	<div class="content">
+		<img src="profilepic.png" alt="Profile Pic" width="100", height="100", style="max-width: 50%">  
 
-
-    <!-- TOP NAV BAR -->
-    <div class="topnav">
-      <ul>
-      <li><a href="homepage.php">Home</a></li>
-      <!-- EMPLOYEE PROFILE OR CUSTOMER PROFILE (Dont show if not logged in)-->
-      <?php if ($_SESSION['loggedin']): ?>
-      <li><a href= <?php
-        if ($_SESSION['isEmployee']) {
-          echo "employeeProfile.php";
-        } else {
-          echo "customerProfile.php";
-        } //if else
-        ?> >Profile</a> </li>
-        <?php endif ?>
-      <li><a href="employeeSignup.php">Employee Sign-Up</a></li>
-      <li><a href="customerSignUp.php">Customer Sign-Up</a></li>
-      
-      <?php if(!$_SESSION['isEmployee'] && $_SESSION['loggedin']):?>
-        <li><a href="animalSignup.php">Create Pet Account</a></li>
-        <li><a href="createPosts.php">Create Post</a></li>
-      <?php endif ?>
-      <li><a href="search.php">Posts</a></li>
-      <li><a href="login.php">Login</a> </li>
-      <li><a href="logout.php">Logout</a></li>
-      </ul>
-	</div><br>
-  
-    <div class="content">
-      <br>
-    <img src="profilepic.png" alt="Profile Pic" width="100", height="100", style="max-width: 50%">  
-
-      <!-- PHP to list the animals employee is willing to take care of HERE -->
-      <div>
-        Animals you are willing to take care of:
-
-        <ul>
-
-        <?php foreach($employee_willing_animals as $animal): ?>
-          <li><?php echo $animal ?></li>
-        <?php endforeach ?>
-
-          
-        </ul>
-
-        Order history:
-        <ul>
-            <li>list specific animal they took care of</li>
-            <li>list specific animal they took care of</li>
-          </ul>
-      </div>
-      
-
-
-
-        <div class="leftcolumn" style="font-size:large; line-height:2.0; text-align:center">
-          Pet-sitting at your convenience! Just post and certified pet sitters in your area will come at your service.
-        </div>
-
-        <div class="center">
-          <img src="https://cdn.pixabay.com/photo/2018/10/01/09/21/pets-3715733_1280.jpg" alt="Pets" style="max-width: 100%;width:auto;height:auto;">
-        </div>
-
-
-      <h3 style="color: #1c1c1c" > About Us </h3>
-      
-
-    </div>
-    <div class="footer">
-     
-    </div>
-</body>
+		<!-- PHP to list the animals employee is willing to take care of HERE -->
+		<div>
+			<h2>Animals you are willing to take care of:</h2>
+			<ul>
+				<?php foreach($employee_willing_animals as $animal): ?>
+				<li><?php echo $animal ?></li>
+				<?php endforeach ?>
+			</ul>
+			<h2>Order history:</h2>
+			<ul>
+				<li>list specific animal they took care of</li>
+				<li>list specific animal they took care of</li>
+			 </ul>
+		</div>
+		<h3>Pet-sitting at your convenience! Just post and certified pet sitters in your area will come at your service.</h3>
+		<img id="pet_pic" src="https://cdn.pixabay.com/photo/2018/10/01/09/21/pets-3715733_1280.jpg" alt="Pets" style="max-width: 100%;width:auto;height:auto;">
+		<div class="footer">
+		 
+		</div>
+	</body>
 </html>

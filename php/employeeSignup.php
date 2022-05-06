@@ -86,73 +86,71 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link ref="stylesheet" href="../css/style.css">
-    <title>Form</title>
-	<link rel="stylesheet" href="../css/style.css">
-    <title>Employee Sign-Up</title>
-</head>
-<body>
-    <div class="together">
-        <a href="homepage.php"><img class="logoImg" src="../pawprint.png"></a>
-        <h1>DBMS Petsitting Co.</h1>
-    </div>
-	
-    <!-- TOP NAV BAR -->
-    <div class="topnav">
-      <ul>
-      <li><a href="homepage.php">Home</a></li>
-      <!-- EMPLOYEE PROFILE OR CUSTOMER PROFILE (Dont show if not logged in)-->
-      <?php if ($_SESSION['loggedin']): ?>
-      <li><a href= <?php
-        if ($_SESSION['isEmployee']) {
-          echo "employeeProfile.php";
-        } else {
-          echo "customerProfile.php";
-        } //if else
-        ?> >Profile</a> </li>
-        <?php endif ?>
-      <li><a href="employeeSignup.php">Employee Sign-Up</a></li>
-      <li><a href="customerSignUp.php">Customer Sign-Up</a></li>
-      
-      <?php if(!$_SESSION['isEmployee'] && $_SESSION['loggedin']):?>
-        <li><a href="animalSignup.php">Create Pet Account</a></li>
-        <li><a href="createPosts.php">Create Post</a></li>
-      <?php endif ?>
-      <li><a href="search.php">Posts</a></li>
-      <li><a href="login.php">Login</a> </li>
-      <li><a href="logout.php">Logout</a></li>
-      </ul>
-	</div><br>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link ref="stylesheet" href="../css/style.css">
+		<title>Form</title>
+		<link rel="stylesheet" href="../css/style.css">
+		<title>Employee Sign-Up</title>
+	</head>
+	<body>
+		<div class="together">
+			<a href="homepage.php"><img id="logoImg" src="pawprint.png"></a>
+			<h1>DBMS Petsitting Co.</h1>
+		</div>
+		
+		<!-- TOP NAV BAR -->
+		<div class="topnav">
+			<ul>
+				<li><a href="homepage.php">Home</a></li>
+				
+				<!-- EMPLOYEE PROFILE OR CUSTOMER PROFILE (Dont show if not logged in)-->
+				<?php if ($_SESSION['loggedin']): ?>
+				<li><a href= <?php
+					if ($_SESSION['isEmployee']) {
+						echo "employeeProfile.php";
+					} else {
+						echo "customerProfile.php";
+					} //if else
+					?> >Profile</a> </li>
+				<?php endif ?>
+				<li><a href="employeeSignup.php">Employee Sign-Up</a></li>
+				<li><a href="customerSignUp.php">Customer Sign-Up</a></li>
+				<?php if(!$_SESSION['isEmployee'] && $_SESSION['loggedin']):?>
+				<li><a href="animalSignup.php">Create Pet Account</a></li>
+				<li><a href="createPosts.php">Create Post</a></li>
+				<?php endif ?>
+				<li><a href="search.php">Posts</a></li>
+				<li><a href="login.php">Login</a> </li>
+				<li><a href="logout.php">Logout</a></li>
+			</ul>
+		</div><br>
+		<form action="#" method = "post">
+			<label for="fname">First name:</label>
+			<input type="text" id="fname" name="fname" placeholder="John"><br>
+			<label for="lname">Last name:</label>
+			<input type="text" id="lname" name="lname" placeholder="Doe"><br>
+			<label for="email">Email:</label>
+			<input type="email" id="email" name="email" placeholder="email@gmail.com"><br>
+			<label for="number">Phone number:</label>
+			<input type="tel" id="number" name="number" placeholder="123-456-7890"><br>
+			<label for="password">Password:</label>
+			<input type="text" id="password" name="password"><br>
+			<label for="zipcode">Zipcode:</label>
+			<input type="text" id="zipcode" name="zipcode"><br>
+			<label for="animal">Which animals are you willing to take care of:</label><br>
 
-	</div>
-    <form action="#" method = "post">
-        <label for="fname">First name:</label>
-        <input type="text" id="fname" name="fname" placeholder="John"><br>
-        <label for="lname">Last name:</label>
-        <input type="text" id="lname" name="lname" placeholder="Doe"><br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" placeholder="email@gmail.com"><br>
-        <label for="number">Phone number:</label>
-        <input type="tel" id="number" name="number" placeholder="123-456-7890"><br>
-        <label for="password">Password:</label>
-        <input type="text" id="password" name="password"><br>
-        <label for="zipcode">Zipcode:</label>
-        <input type="text" id="zipcode" name="zipcode"><br>
-        <label for="animal">Which animals are you willing to take care of:</label><br>
+			<?php foreach($animals as $animal => $id): ?>
+				<input type = "checkbox" name = <?php echo $animal; ?> value = <?php echo $animal; ?>>
+				<label for=<?php echo $animal; ?>> <?php echo $animal; ?> </label><br>
+			   
+			<?php endforeach; ?>
 
-        <?php foreach($animals as $animal => $id): ?>
-            <input type = "checkbox" name = <?php echo $animal; ?> value = <?php echo $animal; ?>>
-            <label for=<?php echo $animal; ?>> <?php echo $animal; ?> </label><br>
-           
-        <?php endforeach; ?>
-
-        <label for="notes">Description:</label><br>
-        <textarea id="notes" name="notes" rows="4" cols="50"></textarea><br>
-        <input class="submit" type="submit" name="submit" value="Submit">
-    </form> 
-</body>
+			<label for="notes">Description:</label><br>
+			<textarea id="notes" name="notes" rows="4" cols="50"></textarea><br>
+			<input class="submit" type="submit" name="submit" value="Submit">
+		</form> 
+	</body>
 </html>
