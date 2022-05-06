@@ -97,7 +97,7 @@
 			<li><a href="homepage.php">Home</a></li>
 			<!-- EMPLOYEE PROFILE OR CUSTOMER PROFILE -->
 			<li><a href= <?php
-			if ($_SESSION['isEmployee']) {
+			if (isset($_SESSION['isEmployee'])) {
 				echo "employeeProfile.php";
 			} else {
 				echo "customerProfile.php";
@@ -105,7 +105,7 @@
 			?> >Profile</a> </li>
 			<li><a href="employeeSignup.php">Employee Sign-Up</a></li>
 			<li><a href="customerSignUp.php">Customer Sign-Up</a></li>
-			<?php if(!$_SESSION['isEmployee'] && $_SESSION['loggedin']):?>
+			<?php if (isset($_SESSION['isEmployee']) && isset($_SESSION['loggedin'])):?>
 			<li><a href="animalSignup.php">Create Pet Account</a></li>
 			<li><a href="createPosts.php">Create Post</a></li>
 			<?php endif ?>
