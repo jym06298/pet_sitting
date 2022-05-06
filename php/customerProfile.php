@@ -34,7 +34,21 @@
         echo $e->getMessage();
     } //try catch
     
-  } //if
+    if( isset($_GET['delete']) ) {
+      $delete_account_query = "DELETE FROM customers WHERE customerID =:_customerID ;";
+      $delete_account_statement = $db->prepare($delete_account_query);
+      $delete_account_statement->bindValue(":_customerID", $_SESSION['userID']);
+
+      try {
+        $delete_account_statement->execute();
+        header("Location: homepage.php");
+      } catch(Exception $e) {
+          echo $e->getMessage();
+      } //try catch
+
+    }
+
+    } //if
 
 ?>
 
@@ -124,7 +138,7 @@
 					
 				  </ul>
 			</div>
-			<form id="account_settings" action="#" method="post">
+			<form id="account_settings" action="#" method="get">
 				<h2>Account settings:</h2>
 				<h3 style="margin-left: 25px;">Delete your profile</h3>
 				<input style="margin-left: 25px;" class="submit" type="submit" name="delete" value="DELETE">
