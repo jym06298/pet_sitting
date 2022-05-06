@@ -11,12 +11,29 @@
     $pet_query_statement = $db->prepare($pet_query);
     $pet_query_statement->bindValue(":_customerID", $_SESSION['userID']);
 
+    
+
     try {
         $pet_query_statement->execute();
         $pets = $pet_query_statement->fetchAll();
+        $pet_query_statement->closeCursor();
+
     } catch(Exception $e) {
         echo $e->getMessage();
     } //try catch
+
+    $accepted_order_query = "SELECT * FROM orders WHERE customerID = :_customerID;";
+    $accepted_order_statement = $db->prepare($accepted_order_query);
+    $accepted_order_statement->bindValue(":_customerID", $_SESSION['loggedin']);
+
+    try {
+      $accepted_order_statement->execute();
+      $orders = $accepted_order_statement->fetchAll();
+
+    } catch(Exception $e) {
+        echo $e->getMessage();
+    } //try catch
+    
   } //if
 
 ?>
@@ -73,10 +90,38 @@
 					<li><?php echo $pet['pet_name'] ?></li>
 					<?php endforeach ?>
 				</ul>
-				<h2>Order history:</h2>
+				<h2>Your Orders:</h2>
+
 				<ul>
-					<li>list specific animal they took care of</li>
-					<li>list specific animal they took care of</li>
+          <?php if ($accepted_order_statement->rowCount() == 0): ?>
+            <li>You have no orders</li>
+					<?php endif ?>
+
+          <?php foreach($orders as $order): ?>
+					<li>
+            <?php
+              $pet_name_procedure = "CALL get_pet_name(:_petID);";
+              $pet_name_statement = $db->prepare($pet_name_procedure);
+              $pet_name_statement->bindValue(":_petID", $order['petID']);
+
+              try {
+                $pet_name_statement->execute();
+                $pet = $pet_name_statement->fetch();
+                
+              } catch(Exception $e) {
+                  echo $e->getMessage();
+              } //try catch
+              
+              echo "Pet: " .$pet['pet_name'] ."<br>Start Time: " .$order['begin_time'] ."<br>End Time: " .$order['end_time'];
+              if($order['employeeID'] > 0) {
+                echo "<br> post accepted";
+              } else {
+                echo "<br> post has not been accepted";
+              }
+            ?>
+          </li>
+					<?php endforeach ?>
+					
 				  </ul>
 			</div>
 			<h3 id="heading">Pet-sitting at your convenience! Just post and certified pet sitters in your area will come at your service.</h3>
