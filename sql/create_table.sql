@@ -19,15 +19,6 @@ CREATE TABLE employee (
     PRIMARY KEY(employeeID)
 );
 
-CREATE TABLE employee_availability (
-    availabilityID int(4) NOT NULL AUTO_INCREMENT,
-    employeeID int(4),
-    start_time datetime,
-    end_time datetime,
-    FOREIGN KEY (employeeID) REFERENCES employee(employeeID),
-    PRIMARY KEY (availabilityID)
-);
-
 CREATE TABLE animals (
     animalID int(4) NOT NULL AUTO_INCREMENT,
     animal_name varchar(28),
