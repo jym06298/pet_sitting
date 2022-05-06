@@ -19,6 +19,7 @@ CREATE TABLE employee (
     PRIMARY KEY(employeeID)
 );
 
+
 CREATE TABLE animals (
     animalID int(4) NOT NULL AUTO_INCREMENT,
     animal_name varchar(28),
