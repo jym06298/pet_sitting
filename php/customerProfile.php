@@ -1,7 +1,7 @@
 <?php
   session_start();
   require('database.php');
-#  require('queryAnimals.php');
+  require('alert.php');
 
 
   
@@ -35,7 +35,7 @@
     } //try catch
     
     if( isset($_GET['delete']) ) {
-      $delete_account_query = "DELETE FROM customers WHERE customerID =:_customerID ;";
+      $delete_account_query = "DELETE FROM customers WHERE customerID =:_customerID;";
       $delete_account_statement = $db->prepare($delete_account_query);
       $delete_account_statement->bindValue(":_customerID", $_SESSION['userID']);
 
@@ -47,6 +47,43 @@
       } //try catch
 
     }
+
+    if( isset($_POST['update']) ) {
+      $update_array = array();
+
+      if(!empty($_POST['email'])) {
+        $update_array['email'] = $_POST['email'];
+      } 
+      if (!empty($_POST['phone'])){
+        $update_array['phone'] = $_POST['phone'];
+      }
+      if (!empty($_POST['zipcode'])) {
+        $update_array['zipcode'] = $_POST['zipcode'];
+      }
+      if(!empty($_POST['password'])) {
+        $update_array['password'] = $_POST['password'];
+      }
+
+      foreach($update_array as $column => $update_val) {
+        
+        $update_query = "UPDATE customers SET $column = :_new_value WHERE customerID = :_customerID;";
+        $update_statement = $db->prepare($update_query);
+        $update_statement->bindValue(":_new_value", $update_val);
+        $update_statement->bindValue(":_customerID", $_SESSION['userID']);
+
+       
+        try {
+          $update_statement->execute();
+          $update_statement->closeCursor();
+        } catch(Exception $e) {
+          function_alert("Something went wrong. Please try again.");  
+          echo $e->getMessage();
+            
+        } //try catch
+
+      } //foreach
+
+    } //if
 
     } //if
 
@@ -138,8 +175,27 @@
 					
 				  </ul>
 			</div>
+      <h2>Account settings:</h2>
+
+      <form action="#" method = "post">
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="email@gmail.com"><br>
+        <label for="number">Phone number:</label>
+        <input type="tel" id="number" name="phone" placeholder="123-456-7890"><br>
+
+        <!--<label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>-->
+        
+        <label for="zipcode">Zipcode:</label>
+        <input type="text" id="zipcode" name="zipcode"><br>
+        <label for="password">Password:</label>
+			  <input type="text" id="password" name="password"><br>
+        <input class="submit" type="submit" name = "update" value="Submit">
+    </form> 
+
 			<form id="account_settings" action="#" method="get">
-				<h2>Account settings:</h2>
+				
 				<h3 style="margin-left: 25px;">Delete your profile</h3>
 				<input style="margin-left: 25px;" class="submit" type="submit" name="delete" value="DELETE">
 			</form> 
