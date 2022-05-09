@@ -103,7 +103,7 @@
 		</div>
 		
 		<!-- TOP NAV BAR -->
-		<div class="topnav">
+        <div class="topnav">
 			<ul>
 				<li><a href="homepage.php">Home</a></li>
 			

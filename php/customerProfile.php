@@ -102,23 +102,23 @@
 			</a>
 			<h1>DBMS Petsitting Co. Pet-Sitter</h1>
 		</div>
-		<div class="topnav">
+    <div class="topnav">
 			<ul>
 				<li><a href="homepage.php">Home</a></li>
-				
+			
 				<!-- EMPLOYEE PROFILE OR CUSTOMER PROFILE (Dont show if not logged in)-->
-				<?php if ($_SESSION['loggedin']): ?>
+				<?php if (isset ($_SESSION['loggedin'])): ?>
 				<li><a href= <?php
 					if ($_SESSION['isEmployee']) {
-					echo "employeeProfile.php";
+						echo "employeeProfile.php";
 					} else {
-					echo "customerProfile.php";
+						echo "customerProfile.php";
 					} //if else
-					?> >Profile</a> </li>
-					<?php endif ?>
+				?>>Profile</a></li>
+				<?php endif ?>
 				<li><a href="employeeSignup.php">Employee Sign-Up</a></li>
 				<li><a href="customerSignUp.php">Customer Sign-Up</a></li>
-				<?php if(!$_SESSION['isEmployee'] && $_SESSION['loggedin']):?>
+				<?php if(isset($_SESSION['isEmployee']) && isset($_SESSION['loggedin'])):?>
 				<li><a href="animalSignup.php">Create Pet Account</a></li>
 				<li><a href="createPosts.php">Create Post</a></li>
 				<?php endif ?>
