@@ -5,7 +5,8 @@ CREATE TRIGGER update_cost
 BEFORE UPDATE 
 ON orders FOR EACH ROW
 BEGIN
-    SET NEW.cost = TIMESTAMPDIFF(hour, NEW.begin_time, NEW.end_time) * (SELECT charging_rate FROM employee WHERE employeeID = NEW.employeeID);
+    
+    SET NEW.cost = get_cost(NEW.begin_time, NEW.end_time, NEW.employeeID);
 END //
 
 DELIMITER ;
