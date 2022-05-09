@@ -18,12 +18,12 @@ BEGIN
     SELECT animal_name from animals WHERE animals.animalID = animalID;
 END //
 
-CREATE FUNCTION get_cost(begin_time datetime, end_time datetime, employeeID int(4) )
+CREATE FUNCTION get_cost(begin_time datetime, end_time datetime, employee_ID int(4) )
 RETURNS float(8,2)
 BEGIN
     DECLARE cost float(8,2);
 
-    SET cost = TIMESTAMPDIFF(hour, begin_time, end_time) * (SELECT charging_rate FROM employee WHERE employeeID = employeeID LIMIT 1);
+    SET cost = TIMESTAMPDIFF(hour, begin_time, end_time) * (SELECT charging_rate FROM employee WHERE employeeID = employee_ID LIMIT 1);
     return (cost);
 
 END //
