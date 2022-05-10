@@ -85,16 +85,20 @@
       if(!empty($_POST['password'])) {
         $update_array['password'] = $_POST['password'];
       }
+      if(!empty($_POST['charging_rate'])) {
+        $update_array['charging_rate'] = $_POST['charging_rate'];
+      }
 
       foreach($update_array as $column => $update_val) {
         
-        $update_query = "UPDATE customers SET $column = :_new_value WHERE customerID = :_customerID;";
+        $update_query = "UPDATE employee SET $column = :_new_value WHERE employeeID = :_employeeID;";
         $update_statement = $db->prepare($update_query);
         $update_statement->bindValue(":_new_value", $update_val);
-        $update_statement->bindValue(":_customerID", $_SESSION['userID']);
+        $update_statement->bindValue(":_employeeID", $_SESSION['userID']);
 
        
         try {
+
           $update_statement->execute();
           $update_statement->closeCursor();
         } catch(Exception $e) {
@@ -229,6 +233,8 @@
 			<input type="text" id="password" name="password"><br>
 			<label for="zipcode">Zipcode:</label>
 			<input type="text" id="zipcode" name="zipcode"><br>
+      <label for="charging_rate">charging rate:</label>
+      <input type="number" name="charging_rate" step="any"><br>
 			<label for="animal">Which animals are you willing to take care of:</label><br>
 
 			<?php foreach($animals as $animal => $id): ?>
